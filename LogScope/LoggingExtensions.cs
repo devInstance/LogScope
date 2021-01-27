@@ -41,10 +41,9 @@ namespace DevInstance.LogScope
             log.Line(LogLevel.ERROR, ex.StackTrace);
         }
 
-
         public static ILog DebugExScope(this ILog log, [CallerMemberName] string scope = "scope")
         {
-            return log.CreateScope(LogLevel.DEBUG_EXTRA, scope);
+            return log.Scope(LogLevel.DEBUG_EXTRA, scope);
         }
     }
 }

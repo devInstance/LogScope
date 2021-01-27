@@ -4,7 +4,8 @@ namespace DevInstance.LogScope
 {
     public enum LogLevel
     {
-        ERROR = 0,
+        NOLOG = 0,
+        ERROR = 2,
         INFO = 4,
         DEBUG = 8,
         DEBUG_EXTRA = 10
@@ -13,6 +14,6 @@ namespace DevInstance.LogScope
     public interface ILog : IDisposable
     {
         void Line(LogLevel level, string message);
-        ILog CreateScope(LogLevel level, string scope);
+        ILog Scope(LogLevel level, string scope);
     }
 }

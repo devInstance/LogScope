@@ -2,41 +2,44 @@
 
 namespace DevInstance.LogScope 
 {
-    public class LogToConsole : ILog
+    internal class LogToConsole : ILog
     {
         private DateTime timeStart;
         public ILogProvider Provider { get; }
+        public ILogFormater Formater { get; }
         public LogLevel ScopeLevel { get; }
         public string ScopeName { get; }
 
-        public LogToConsole(ILogProvider provider, LogLevel scopeLevel, string scope, bool logConstructor)
+        public LogToConsole(ILogProvider provider, ILogFormater formater, LogLevel scopeLevel, string scope, bool logConstructor)
         {
             timeStart = DateTime.Now;
             ScopeLevel = scopeLevel;
             ScopeName = scope;
             Provider = provider;
+            Formater = formater;
             if (logConstructor && ScopeLevel <= provider.Level && !String.IsNullOrEmpty(ScopeName))
             {
-                Console.WriteLine($"--> begin of {ScopeName}");
+                Console.WriteLine(formater.ScopeStart(timeStart, ScopeName));
             }
         }
 
-        public ILog CreateScope(LogLevel level, string childScope)
+        public ILog Scope(LogLevel level, string childScope)
         {
             var s = childScope;
             if (!String.IsNullOrEmpty(ScopeName))
             {
-                s = $"{ScopeName}:{childScope}";
+                s = Formater.FormatNestedScopes(ScopeName, childScope);
             }
-            return new LogToConsole(Provider, level, s, true);
+            return new LogToConsole(Provider, Formater, level, s, true);
         }
 
         public void Dispose()
         {
             if (ScopeLevel <= Provider.Level)
             {
-                var execTime = DateTime.Now - timeStart;
-                Console.WriteLine($"<-- end of {ScopeName}, time:{execTime.TotalMilliseconds} msec");
+                var endTime = DateTime.Now;
+                var execTime = endTime - timeStart;
+                Console.WriteLine(Formater.ScopeEnd(endTime, ScopeName, execTime));
             }
         }
 
@@ -44,14 +47,7 @@ namespace DevInstance.LogScope
         {
             if (l <= Provider.Level)
             {
-                if (String.IsNullOrEmpty(ScopeName))
-                {
-                    Console.WriteLine($"    {message}");
-                }
-                else
-                {
-                    Console.WriteLine($"    {ScopeName}: {message}");
-                }
+                Console.WriteLine(Formater.FormatLine(ScopeName, message));
             }
         }
     }
