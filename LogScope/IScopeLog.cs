@@ -11,9 +11,9 @@ namespace DevInstance.LogScope
         DEBUG_EXTRA = 10
     }
 
-    public interface ILog : IDisposable
+    public interface IScopeLog : IDisposable
     {
         void Line(LogLevel level, string message);
-        ILog Scope(LogLevel level, string scope);
+        IScopeLog Scope(LogLevel level, string scope);
     }
 }

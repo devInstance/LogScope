@@ -1,10 +1,11 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
 namespace DevInstance.LogScope
 {
     public interface ILogProvider
     {
-        LogLevel Level { get; }
-
-        ILog CreateLogger(string scope);
+        void WriteLine(string line);
     }
 }

@@ -5,43 +5,43 @@ namespace DevInstance.LogScope
 {
     public static class LoggingExtensions
     {
-        public static ILog CreateLogger(this ILogProvider provider, Type scope)
+        public static IScopeLog CreateLogger(this IScopeManager provider, Type scope)
         {
             return provider.CreateLogger(scope.Name);
         }
 
-        public static ILog CreateLogger(this ILogProvider provider, Object scope)
+        public static IScopeLog CreateLogger(this IScopeManager provider, Object scope)
         {
             return provider.CreateLogger(scope.GetType().Name);
         }
 
-        public static void D(this ILog log, string message)
+        public static void D(this IScopeLog log, string message)
         {
             log.Line(LogLevel.DEBUG, message);
         }
 
-        public static void I(this ILog log, string message)
+        public static void I(this IScopeLog log, string message)
         {
             log.Line(LogLevel.INFO, message);
         }
 
-        public static void E(this ILog log, string message)
+        public static void E(this IScopeLog log, string message)
         {
             log.Line(LogLevel.ERROR, $"Error!!!: {message}");
         }
-        public static void E(this ILog log, Exception ex)
+        public static void E(this IScopeLog log, Exception ex)
         {
             log.Line(LogLevel.ERROR, $"Exception!!!: {ex.Message}");
             log.Line(LogLevel.ERROR, ex.StackTrace);
         }
 
-        public static void E(this ILog log, string message, Exception ex)
+        public static void E(this IScopeLog log, string message, Exception ex)
         {
             log.Line(LogLevel.ERROR, $"Exception!!!: {message}");
             log.Line(LogLevel.ERROR, ex.StackTrace);
         }
 
-        public static ILog DebugExScope(this ILog log, [CallerMemberName] string scope = "scope")
+        public static IScopeLog DebugExScope(this IScopeLog log, [CallerMemberName] string scope = "scope")
         {
             return log.Scope(LogLevel.DEBUG_EXTRA, scope);
         }

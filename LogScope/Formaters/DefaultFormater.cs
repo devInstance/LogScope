@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DevInstance.LogScope.Formaters
 {
-    public class DefaultFormater : ILogFormater
+    public class DefaultFormater : IScopeFormater
     {
         public bool ShowTimestamp { get; }
         public string ScopeSeparator { get; }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DevInstance.LogScope
 {
-    public interface ILogFormater
+    public interface IScopeFormater
     {
         string ScopeStart(DateTime timeStart, string scopeName);
         string ScopeEnd(DateTime endTime, string scopeName, TimeSpan execTime);
