@@ -13,6 +13,7 @@ namespace DevInstance.LogScope
 
     public interface IScopeLog : IDisposable
     {
+        string Name { get; }
         void Line(LogLevel level, string message);
         IScopeLog Scope(LogLevel level, string scope);
     }
