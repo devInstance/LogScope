@@ -1,4 +1,5 @@
-﻿using DevInstance.LogScope.Logger;
+﻿using DevInstance.LogScope.Formaters;
+using DevInstance.LogScope.Logger;
 using DevInstance.LogScope.Providers.Console;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -14,9 +15,15 @@ namespace DevInstance.LogScope.Extensions
             return col.AddSingleton(manager);
         }
 
-        public static IServiceCollection AddConsoleLogging(this IServiceCollection col, LogLevel level)
+        public static IServiceCollection AddConsoleLogging(this IServiceCollection col, LogLevel level, bool showTimestamp)
         {
-            return col.AddSingleton<IScopeManager>(new BaseScopeManager(level, new ConsoleLogProvider()));
+            return col.AddSingleton<IScopeManager>(
+                new BaseScopeManager(
+                    level, 
+                    new ConsoleLogProvider(),
+                    new DefaultFormater(showTimestamp)
+                    )
+                );
         }
     }
 }

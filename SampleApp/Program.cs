@@ -7,17 +7,10 @@ namespace DevInstance.LogScope.SampleApp
     {
         static void Main(string[] args)
         {
-            var manager = ScopeLogFactory.Create(LogLevel.DEBUG_EXTRA, new ConsoleLogProvider());
-            var looger = manager.CreateLogger("SampleApp");
-            looger.D("Hello World!");
-            using (var log = looger.DebugExScope())
-            {
-                log.D("Hello from the scope A");
-                using (var sublog = log.DebugExScope("Sub-scope"))
-                {
-                    sublog.D("Hello from the scope B");
-                }
-            }
+            var manager = ScopeLogFactory.CreateConsoleLogger(LogLevel.DEBUG_EXTRA, true);
+
+            var test = new TestClass(manager);
+            test.MethodA();
 
             Console.ReadKey();
         }

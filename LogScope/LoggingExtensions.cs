@@ -3,6 +3,9 @@ using System.Runtime.CompilerServices;
 
 namespace DevInstance.LogScope
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class LoggingExtensions
     {
         public static IScopeLog CreateLogger(this IScopeManager provider, Type scope)
@@ -13,6 +16,11 @@ namespace DevInstance.LogScope
         public static IScopeLog CreateLogger(this IScopeManager provider, Object scope)
         {
             return provider.CreateLogger(scope.GetType().Name);
+        }
+
+        public static void DE(this IScopeLog log, string message)
+        {
+            log.Line(LogLevel.DEBUG_EXTRA, message);
         }
 
         public static void D(this IScopeLog log, string message)
@@ -44,6 +52,16 @@ namespace DevInstance.LogScope
         public static IScopeLog DebugExScope(this IScopeLog log, [CallerMemberName] string scope = "scope")
         {
             return log.Scope(LogLevel.DEBUG_EXTRA, scope);
+        }
+
+        public static IScopeLog DebugScope(this IScopeLog log, [CallerMemberName] string scope = "scope")
+        {
+            return log.Scope(LogLevel.DEBUG, scope);
+        }
+
+        public static IScopeLog InfoScope(this IScopeLog log, [CallerMemberName] string scope = "scope")
+        {
+            return log.Scope(LogLevel.DEBUG, scope);
         }
     }
 }

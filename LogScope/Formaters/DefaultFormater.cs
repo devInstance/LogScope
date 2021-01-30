@@ -33,7 +33,7 @@ namespace DevInstance.LogScope.Formaters
             var result = "";
             if(ShowTimestamp)
             {
-                result += String.Format("yy-MM-dd HH:mm:ss", DateTime.Now);
+                result += String.Format("{0:yy-MM-dd HH:mm:ss}", DateTime.Now);
             }
             if (String.IsNullOrEmpty(scopeName))
             {
@@ -49,12 +49,22 @@ namespace DevInstance.LogScope.Formaters
 
         public string ScopeStart(DateTime timeStart, string scopeName)
         {
-            return $"{ScopeMessageStart}{scopeName}";
+            var result = "";
+            if (ShowTimestamp)
+            {
+                result += String.Format("{0:yy-MM-dd HH:mm:ss}", DateTime.Now);
+            }
+            return $"{result}{ScopeMessageStart}{scopeName}";
         }
 
         public string ScopeEnd(DateTime endTime, string scopeName, TimeSpan execTime)
         {
-            return $"{ScopeMessageEnd}{scopeName}, time:{execTime.TotalMilliseconds} msec";
+            var result = "";
+            if (ShowTimestamp)
+            {
+                result += String.Format("{0:yy-MM-dd HH:mm:ss}", DateTime.Now);
+            }
+            return $"{result}{ScopeMessageEnd}{scopeName}, time:{execTime.TotalMilliseconds} msec";
         }
     }
 }
