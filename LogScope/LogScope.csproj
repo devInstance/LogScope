@@ -17,6 +17,7 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <AssemblyVersion>1.0.0.1</AssemblyVersion>
     <FileVersion>1.0.0.1</FileVersion>
+    <PackageIcon>icon.png</PackageIcon>
   </PropertyGroup>
 
     <ItemGroup>
@@ -25,6 +26,10 @@
 
 
     <ItemGroup>
+    <None Include="..\icon.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
     <None Include="..\LICENSE">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
