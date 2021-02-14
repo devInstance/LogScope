@@ -1,4 +1,4 @@
-﻿using DevInstance.LogScope.Providers.Console;
+﻿using DevInstance.LogScope.Formaters;
 using System;
 
 namespace DevInstance.LogScope.SampleApp
@@ -7,10 +7,15 @@ namespace DevInstance.LogScope.SampleApp
     {
         static void Main(string[] args)
         {
-            var manager = ScopeLogFactory.CreateConsoleLogger(LogLevel.DEBUG_EXTRA, true);
+            Console.WriteLine(" ======== Default options ========");
+            var manager = ScopeLogFactory.CreateConsoleLogger(LogLevel.DEBUG_EXTRA);
 
-            var test = new TestClass(manager);
-            test.MethodA();
+            new TestClass(manager).MethodA();
+
+            Console.WriteLine(" ======== With Timestamp and Thread options ========");
+            manager = ScopeLogFactory.CreateConsoleLogger(LogLevel.DEBUG_EXTRA, new DefaultFormaterOptions { ShowTimestamp = true, ShowThreadNumber = true });
+
+            new TestClass(manager).MethodA();
 
             Console.ReadKey();
         }

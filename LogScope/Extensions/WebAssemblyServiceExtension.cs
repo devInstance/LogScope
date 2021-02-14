@@ -15,13 +15,13 @@ namespace DevInstance.LogScope.Extensions
             return col.AddSingleton(manager);
         }
 
-        public static IServiceCollection AddConsoleLogging(this IServiceCollection col, LogLevel level, bool showTimestamp)
+        public static IServiceCollection AddConsoleLogging(this IServiceCollection col, LogLevel level, bool showTimestamp, bool showThreadNumber)
         {
             return col.AddSingleton<IScopeManager>(
                 new BaseScopeManager(
                     level, 
                     new ConsoleLogProvider(),
-                    new DefaultFormater(showTimestamp)
+                    new DefaultFormater(new DefaultFormaterOptions { ShowTimestamp = showTimestamp, ShowThreadNumber = showThreadNumber })
                     )
                 );
         }

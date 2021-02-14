@@ -1,9 +1,6 @@
 ﻿using DevInstance.LogScope.Formaters;
 using DevInstance.LogScope.Logger;
 using DevInstance.LogScope.Providers.Console;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DevInstance.LogScope
 {
@@ -14,14 +11,19 @@ namespace DevInstance.LogScope
             return new BaseScopeManager(level, provider, formater);
         }
 
-        public static IScopeManager CreateWithDefaultFormater(LogLevel level, ILogProvider provider, bool showTimestamp)
+        public static IScopeManager CreateWithDefaultFormater(LogLevel level, ILogProvider provider, DefaultFormaterOptions options)
         {
-            return new BaseScopeManager(level, provider, new DefaultFormater(showTimestamp));
+            return new BaseScopeManager(level, provider, new DefaultFormater(options));
         }
 
-        public static IScopeManager CreateConsoleLogger(LogLevel level, bool showTimestamp)
+        public static IScopeManager CreateConsoleLogger(LogLevel level, DefaultFormaterOptions options)
         {
-            return CreateWithDefaultFormater(level, new ConsoleLogProvider(), showTimestamp);
+            return CreateWithDefaultFormater(level, new ConsoleLogProvider(), options);
+        }
+
+        public static IScopeManager CreateConsoleLogger(LogLevel level)
+        {
+            return CreateConsoleLogger(level, null);
         }
     }
 }

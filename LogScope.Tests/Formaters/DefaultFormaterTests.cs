@@ -11,21 +11,21 @@ namespace DevInstance.LogScope.Formaters.Tests
         [Fact()]
         public void ConstructorTest()
         {
-            var formater = new DefaultFormater(false);
+            var formater = new DefaultFormater(null);
             Assert.NotNull(formater);
         }
 
         [Theory]
-        [InlineData(false, "scope", "message", "\tscope:message")]
-        [InlineData(false, "", "message", "\tmessage")]
-        [InlineData(false, null, "message", "\tmessage")]
-        [InlineData(false, "scope", "", "\tscope:")]
-        [InlineData(false, "scope", null, "\tscope:")]
-        [InlineData(false, "", "", "\t")]
-        [InlineData(false, null, null, "\t")]
-        public void ConstructorFormatLine(bool timestamp, string scope, string message, string expected)
+        [InlineData(false, false, "scope", "message", "\tscope:message")]
+        [InlineData(false, false, "", "message", "\tmessage")]
+        [InlineData(false, false, null, "message", "\tmessage")]
+        [InlineData(false, false, "scope", "", "\tscope:")]
+        [InlineData(false, false, "scope", null, "\tscope:")]
+        [InlineData(false, false, "", "", "\t")]
+        [InlineData(false, false, null, null, "\t")]
+        public void ConstructorFormatLine(bool threadnumber, bool timestamp, string scope, string message, string expected)
         {
-            var formater = new DefaultFormater(false);
+            var formater = new DefaultFormater(new DefaultFormaterOptions { ShowThreadNumber = threadnumber, ShowTimestamp = timestamp });
             var result = formater.FormatLine(scope, message);
             Assert.Equal(expected, result);
         }
@@ -35,7 +35,7 @@ namespace DevInstance.LogScope.Formaters.Tests
         [InlineData("", "message", ":message")]
         public void FormatNestedScopesTest(string scope, string schildScope, string expected)
         {
-            var formater = new DefaultFormater(false);
+            var formater = new DefaultFormater(null);
             var result = formater.FormatNestedScopes(scope, schildScope);
             Assert.Equal(expected, result);
         }

@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>DevInstance.LogScope</RootNamespace>
     <AssemblyName>DevInstance.LogScope</AssemblyName>
-    <Version>0.9.1</Version>
+    <Version>1.0.0</Version>
     <Authors>Yuriy Frankiv</Authors>
     <Company>DevInstance</Company>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -14,8 +14,9 @@
     <PackageProjectUrl>https://github.com/devInstance/LogScope</PackageProjectUrl>
     <PackageTags>logging, profiling, tracing</PackageTags>
     <SignAssembly>false</SignAssembly>
-    <AssemblyOriginatorKeyFile>DevInsatnce.pfx</AssemblyOriginatorKeyFile>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <AssemblyVersion>1.0.0.1</AssemblyVersion>
+    <FileVersion>1.0.0.1</FileVersion>
   </PropertyGroup>
 
     <ItemGroup>

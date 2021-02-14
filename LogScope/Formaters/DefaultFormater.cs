@@ -1,70 +1,97 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace DevInstance.LogScope.Formaters
 {
-    public class DefaultFormater : IScopeFormater
+    public class DefaultFormaterOptions
     {
         public const string DefaultSeparator = ":";
-        public const string DefaultScopeStart = "--> begin of ";
-        public const string DefaultScopeEnd = "<-- end of ";
+        public const string DefaultScopeStart = "-->";
+        public const string DefaultScopeEnd = "<--";
 
-        public bool ShowTimestamp { get; }
-        public string Separator { get; }
-        public string ScopeMessageStart { get; }
-        public string ScopeMessageEnd { get; }
+        public bool ShowTimestamp { get; set; }
+        public bool ShowThreadNumber { get; set; }
+        public string Separator { get; set; }
+        public string ScopeStart { get; set; }
+        public string ScopeEnd { get; set; }
 
-        public DefaultFormater(bool showTimestamp) : this(showTimestamp, DefaultSeparator, DefaultScopeStart, DefaultScopeEnd)
+        public DefaultFormaterOptions()
         {
-
+            Separator = Separator ?? DefaultSeparator;
+            ScopeStart = ScopeStart ?? DefaultScopeStart;
+            ScopeEnd = ScopeEnd ?? DefaultScopeEnd;
         }
+    }
 
-        public DefaultFormater(bool showTimestamp, string separator, string scopeStart, string scopeEnd)
+    public class DefaultFormater : IScopeFormater
+    {
+        public DefaultFormaterOptions Options { get; }
+
+
+        public DefaultFormater(DefaultFormaterOptions options)
         {
-            ShowTimestamp = showTimestamp;
-            Separator = separator;
-            ScopeMessageStart = scopeStart;
-            ScopeMessageEnd = scopeEnd;
+            if(options != null)
+            {
+                Options = options;
+            }
+            else
+            {
+                Options = new DefaultFormaterOptions();
+            }
         }
 
         public string FormatLine(string scopeName, string message)
         {
-            var result = "";
-            if(ShowTimestamp)
+            StringBuilder result = new StringBuilder();
+            AppendPrefix(result);
+            result.Append('\t');
+            if (!String.IsNullOrEmpty(scopeName))
             {
-                result += String.Format("{0:yy-MM-dd HH:mm:ss}", DateTime.Now);
+                result.Append(scopeName);
+                result.Append(Options.Separator);
             }
-            if (String.IsNullOrEmpty(scopeName))
+            result.Append(message);
+            return result.ToString();
+        }
+
+        private void AppendPrefix(StringBuilder result)
+        {
+            if (Options.ShowThreadNumber)
             {
-                return $"{result}\t{message}";
+                result.Append(Thread.CurrentThread.ManagedThreadId);
+                result.Append(' ');
             }
-            return $"{result}\t{scopeName}{Separator}{message}";
+            if (Options.ShowTimestamp)
+            {
+                result.AppendFormat("{0:yy-MM-dd HH:mm:ss}", DateTime.Now);
+                result.Append(' ');
+            }
         }
 
         public string FormatNestedScopes(string scopeName, string childScope)
         {
-           return $"{scopeName}{Separator}{childScope}";
+           return $"{scopeName}{Options.Separator}{childScope}";
         }
 
         public string ScopeStart(DateTime timeStart, string scopeName)
         {
-            var result = "";
-            if (ShowTimestamp)
-            {
-                result += String.Format("{0:yy-MM-dd HH:mm:ss}", DateTime.Now);
-            }
-            return $"{result}{ScopeMessageStart}{scopeName}";
+            StringBuilder result = new StringBuilder();
+            AppendPrefix(result);
+            result.Append(Options.ScopeStart);
+            result.Append(scopeName);
+
+            return result.ToString();
         }
 
         public string ScopeEnd(DateTime endTime, string scopeName, TimeSpan execTime)
         {
-            var result = "";
-            if (ShowTimestamp)
-            {
-                result += String.Format("{0:yy-MM-dd HH:mm:ss}", DateTime.Now);
-            }
-            return $"{result}{ScopeMessageEnd}{scopeName}, time:{execTime.TotalMilliseconds} msec";
+            StringBuilder result = new StringBuilder();
+            AppendPrefix(result);
+            result.Append(Options.ScopeEnd);
+            result.Append(scopeName);
+            result.Append($", time:{ execTime.TotalMilliseconds} msec");
+            return result.ToString();
         }
     }
 }

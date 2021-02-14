@@ -19,9 +19,6 @@ namespace DevInstance.LogScope.Logger
                 throw new ArgumentNullException();
             }
 
-            //Contract.Requires<ArgumentNullException>(manager != null);
-            //Contract.Requires<ArgumentNullException>(formater != null);
-
             timeStart = DateTime.Now;
             ScopeLevel = scopeLevel;
             Name = scope;
@@ -35,7 +32,6 @@ namespace DevInstance.LogScope.Logger
 
         public IScopeLog Scope(LogLevel level, string childScope)
         {
-            //Contract.Requires<ArgumentException>(!String.IsNullOrEmpty(childScope), "There is no reason of having scope without name.");
             if (String.IsNullOrEmpty(childScope))
             {
                 throw new ArgumentException("There is no reason of having scope without name.");
@@ -61,7 +57,6 @@ namespace DevInstance.LogScope.Logger
 
         public void Line(LogLevel l, string message)
         {
-            //Contract.Requires<ArgumentNullException>(!String.IsNullOrEmpty(message), "There is no meaning in the empty message.");
             if (String.IsNullOrEmpty(message))
             {
                 throw new ArgumentNullException("There is no meaning in the empty message.");

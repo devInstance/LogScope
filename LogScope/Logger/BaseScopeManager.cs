@@ -1,6 +1,5 @@
 ﻿using DevInstance.LogScope.Formaters;
 using System;
-using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("LogScope.Tests")]
@@ -12,19 +11,12 @@ namespace DevInstance.LogScope.Logger
         public ILogProvider Provider { get; }
         public IScopeFormater Formater { get; }
 
-        public BaseScopeManager(LogLevel level, ILogProvider provider)
-            : this(level, provider, new DefaultFormater(false))
-        {
-        }
-
         public BaseScopeManager(LogLevel level, ILogProvider provider, IScopeFormater formater)
         {
             if (provider == null || formater == null)
             {
                 throw new ArgumentNullException();
             }
-            //Contract.Requires<ArgumentNullException>(provider != null);
-            //Contract.Requires<ArgumentNullException>(formater != null);
 
             Level = level;
             Provider = provider;
