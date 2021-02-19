@@ -3,15 +3,37 @@
 namespace DevInstance.LogScope
 {
     /// <summary>
-    /// Log level
+    /// Log level defines the severity of the log. Logging 
+    /// level is optional and depends on the provider's implementation.
+    /// <seealso cref="LoggingExtensions"/> for the helping methods to make
+    /// it easier to use.
     /// </summary>
     public enum LogLevel
     {
-        NOLOG = 0,
-        ERROR = 2,
-        INFO = 4,
-        DEBUG = 8,
-        DEBUG_EXTRA = 10
+        /// <summary>
+        /// Mo messages should be written in the log.
+        /// </summary>
+        NOLOG,
+        /// <summary>
+        /// Only errors and exception. <see cref="LoggingExtensions.E(IScopeLog, Exception)"/>
+        /// </summary>
+        ERROR,
+        /// <summary>
+        /// Warnings (including errors)
+        /// </summary>
+        WARNING,
+        /// <summary>
+        /// Information (preferred by default)
+        /// </summary>
+        INFO,
+        /// <summary>
+        /// Debug
+        /// </summary>
+        DEBUG,
+        /// <summary>
+        /// All messages
+        /// </summary>
+        TRACE
     }
     /// <summary>
     /// 
@@ -23,17 +45,28 @@ namespace DevInstance.LogScope
         /// </summary>
         string Name { get; }
         /// <summary>
-        /// Log line
+        /// Write one line
         /// </summary>
-        /// <param name="level">Log level</param>
+        /// <param name="level">Log level <see cref="LogLevel"/></param>
         /// <param name="message">Message</param>
         void Line(LogLevel level, string message);
         /// <summary>
-        /// Create a nested scope
+        /// Write one line with default log level;
+        /// </summary>
+        /// <param name="message">Message</param>
+        void Line(string message);
+        /// <summary>
+        /// Creates a nested scope
         /// </summary>
         /// <param name="level"></param>
         /// <param name="scope"></param>
         /// <returns></returns>
         IScopeLog Scope(LogLevel level, string scope);
+        /// <summary>
+        /// Creates a nested scope with default log level;
+        /// </summary>
+        /// <param name="scope"></param>
+        /// <returns></returns>
+        IScopeLog Scope(string scope);
     }
 }

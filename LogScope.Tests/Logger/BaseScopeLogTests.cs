@@ -10,9 +10,9 @@ namespace DevInstance.LogScope.Logger.Tests
     public class BaseScopeLogTests
     {
         [Theory]
-        [InlineData(true, LogLevel.DEBUG_EXTRA, LogLevel.DEBUG, "test1", true)]
-        [InlineData(true, LogLevel.DEBUG_EXTRA, LogLevel.DEBUG_EXTRA, "test2", true)]
-        [InlineData(true, LogLevel.DEBUG, LogLevel.DEBUG_EXTRA, "test3", false)]
+        [InlineData(true, LogLevel.TRACE, LogLevel.DEBUG, "test1", true)]
+        [InlineData(true, LogLevel.TRACE, LogLevel.TRACE, "test2", true)]
+        [InlineData(true, LogLevel.DEBUG, LogLevel.TRACE, "test3", false)]
         [InlineData(true, LogLevel.INFO, LogLevel.DEBUG, "test-test", false)]
         [InlineData(true, LogLevel.NOLOG, LogLevel.INFO, "test1", false)]
         [InlineData(false, LogLevel.INFO, LogLevel.DEBUG, "test1", false)]

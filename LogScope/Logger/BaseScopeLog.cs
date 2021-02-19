@@ -67,5 +67,25 @@ namespace DevInstance.LogScope.Logger
                 Manager.Provider.WriteLine(Formater.FormatLine(Name, message));
             }
         }
+
+        public void Line(string message)
+        {
+            Manager.Provider.WriteLine(Formater.FormatLine(Name, message));
+        }
+
+        public IScopeLog Scope(string scope)
+        {
+            if (String.IsNullOrEmpty(scope))
+            {
+                throw new ArgumentException("There is no reason of having scope without name.");
+            }
+
+            var s = scope;
+            if (!String.IsNullOrEmpty(Name))
+            {
+                s = Formater.FormatNestedScopes(Name, scope);
+            }
+            return new BaseScopeLog(Manager, Formater, Manager.Level, s, true);
+        }
     }
 }

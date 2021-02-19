@@ -6,6 +6,11 @@ namespace DevInstance.LogScope
 {
     public static class ScopeLogFactory
     {
+        public static IScopeManager Create(ILogProvider provider, IScopeFormater formater)
+        {
+            return new BaseScopeManager(LogLevel.TRACE, provider, formater);
+        }
+
         public static IScopeManager Create(LogLevel level, ILogProvider provider, IScopeFormater formater)
         {
             return new BaseScopeManager(level, provider, formater);
