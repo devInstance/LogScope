@@ -28,7 +28,6 @@ namespace DevInstance.LogScope.Formaters
     {
         public DefaultFormaterOptions Options { get; }
 
-
         public DefaultFormater(DefaultFormaterOptions options)
         {
             if(options != null)
