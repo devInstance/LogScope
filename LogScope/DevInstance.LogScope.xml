@@ -75,12 +75,12 @@
         </member>
         <member name="T:DevInstance.LogScope.ILogProvider">
             <summary>
-            
+            ILogProvider defines the log provider interface. 
             </summary>
         </member>
         <member name="M:DevInstance.LogScope.ILogProvider.WriteLine(System.String)">
             <summary>
-            
+            Write log line.
             </summary>
             <param name="line"></param>
         </member>
@@ -165,7 +165,8 @@
         </member>
         <member name="T:DevInstance.LogScope.IScopeLog">
             <summary>
-            
+            Logging scope. Scope can be method or a specific part of it. The implementation is 
+            based on IDisposable where calling Dispose ends the scope.
             </summary>
         </member>
         <member name="P:DevInstance.LogScope.IScopeLog.Name">
@@ -203,7 +204,8 @@
         </member>
         <member name="T:DevInstance.LogScope.IScopeManager">
             <summary>
-            
+            IScopeManager defines the log manager. Use <see cref="T:DevInstance.LogScope.ScopeLogFactory" />
+            or <see cref="T:DevInstance.LogScope.Extensions.ServiceExtensions" />.
             </summary>
         </member>
         <member name="P:DevInstance.LogScope.IScopeManager.Provider">
@@ -225,7 +227,26 @@
         </member>
         <member name="T:DevInstance.LogScope.LoggingExtensions">
             <summary>
-            
+            The goals of extension functions is to maintain simplicity and keep the code clean.
+            </summary>
+        </member>
+        <member name="T:DevInstance.LogScope.ScopeLogFactory">
+            <summary>
+            Factory class to instantiate a scope manager.
+            <example>
+            Here is the example how to create console default logger:
+            <code>
+                var manager = ScopeLogFactory.Create(LogLevel.DEBUG, myprovider, myformatter);
+            }
+            </code>
+            </example>
+            <example>
+            Another example how to create custom provider and formatter:
+            <code>
+                var manager = ScopeLogFactory.CreateConsoleLogger(LogLevel.DEBUG);
+            }
+            </code>
+            </example>
             </summary>
         </member>
     </members>

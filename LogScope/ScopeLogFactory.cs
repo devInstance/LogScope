@@ -4,6 +4,23 @@ using DevInstance.LogScope.Providers.Console;
 
 namespace DevInstance.LogScope
 {
+    /// <summary>
+    /// Factory class to instantiate a scope manager.
+    /// <example>
+    /// Here is the example how to create console default logger:
+    /// <code>
+    ///     var manager = ScopeLogFactory.Create(LogLevel.DEBUG, myprovider, myformatter);
+    /// }
+    /// </code>
+    /// </example>
+    /// <example>
+    /// Another example how to create custom provider and formatter:
+    /// <code>
+    ///     var manager = ScopeLogFactory.CreateConsoleLogger(LogLevel.DEBUG);
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public static class ScopeLogFactory
     {
         public static IScopeManager Create(ILogProvider provider, IScopeFormater formater)

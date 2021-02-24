@@ -36,7 +36,8 @@ namespace DevInstance.LogScope
         TRACE
     }
     /// <summary>
-    /// 
+    /// Logging scope. Scope can be method or a specific part of it. The implementation is 
+    /// based on IDisposable where calling Dispose ends the scope.
     /// </summary>
     public interface IScopeLog : IDisposable
     {

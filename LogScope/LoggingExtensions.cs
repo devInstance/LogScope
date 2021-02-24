@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 namespace DevInstance.LogScope
 {
     /// <summary>
-    /// 
+    /// The goals of extension functions is to maintain simplicity and keep the code clean.
     /// </summary>
     public static class LoggingExtensions
     {

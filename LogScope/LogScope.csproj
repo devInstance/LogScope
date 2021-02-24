@@ -4,20 +4,24 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>DevInstance.LogScope</RootNamespace>
     <AssemblyName>DevInstance.LogScope</AssemblyName>
-    <Version>1.0.0-preview02192020</Version>
+    <Version>1.0.0</Version>
     <Authors>Yuriy Frankiv</Authors>
     <Company>DevInstance</Company>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Description>LogScope implements simple logging framework for tracing, profiling and logging methods and critical parts of the code. It can be integrated with popular logging library (such as Log4Net, NLog, etc). The whole idea is around using a “scope”. Scope can be method or a specific part of it. The implementation is based on IDisposable where calling Dispose ends the scope.</Description>
+    <Description>LogScope implements simple logging framework for tracing, profiling and logging methods and critical parts of the code. It can be integrated with popular logging library (such as Log4Net, NLog, etc). The whole idea is around using a “scope”. Scope can be method or a specific part of it. The implementation is based on IDisposable where calling Dispose ends the scope.
+
+Read more: http://devinstance.net/blog/dotnet-standard-logging-and-profiling</Description>
     <Copyright>(c) 2021 DevInstance</Copyright>
-    <PackageProjectUrl>https://github.com/devInstance/LogScope</PackageProjectUrl>
+    <PackageProjectUrl>http://logscope.devinstance.net</PackageProjectUrl>
     <PackageTags>logging, profiling, tracing</PackageTags>
     <SignAssembly>false</SignAssembly>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <AssemblyVersion>1.0.0.1</AssemblyVersion>
-    <FileVersion>1.0.0.1</FileVersion>
+    <AssemblyVersion>1.0.0.2</AssemblyVersion>
+    <FileVersion>1.0.0.2</FileVersion>
     <PackageIcon>icon.png</PackageIcon>
+    <RepositoryUrl>https://github.com/devInstance/LogScope</RepositoryUrl>
+    <PackageReleaseNotes>First release</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

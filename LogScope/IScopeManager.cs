@@ -1,8 +1,11 @@
 ﻿
+using DevInstance.LogScope.Extensions;
+
 namespace DevInstance.LogScope
 {
     /// <summary>
-    /// 
+    /// IScopeManager defines the log manager. Use <see cref="ScopeLogFactory" />
+    /// or <see cref="ServiceExtensions" />.
     /// </summary>
     public interface IScopeManager
     {
