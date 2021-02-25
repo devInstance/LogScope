@@ -1,4 +1,4 @@
-# **LogScope** .NET Standard 2: Logging, tracing and 
+# **LogScope** .NET Standard 2: Logging, tracing and profiling
 
 ## Overview
 LogScope is a supplemental library that extends the logging function by implementing logging 
@@ -20,7 +20,7 @@ Package manager:
 
     Install-Package DevInstance.LogScope
 
-## Initialization
+## Setup
 The first step is using ScopeLogFactory to instantiate a manager. For instance, logging to the console with debug level, manager can be instantiated using:
 
     var manager = ScopeLogFactory.CreateConsoleLogger(LogLevel.DEBUG);
