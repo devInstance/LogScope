@@ -17,12 +17,9 @@ Read more: http://devinstance.net/blog/dotnet-standard-logging-and-profiling
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="DevInstance.LogScope" Version="1.1.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\LogScope\LogScope.csproj" />
   </ItemGroup>
 
   <ItemGroup>
