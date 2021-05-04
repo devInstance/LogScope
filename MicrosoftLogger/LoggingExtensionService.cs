@@ -16,12 +16,9 @@ namespace DevInstance.LogScope.Extensions.MicrosoftLogger
             logFactory = factory;
             logSettings = settings;
             formatter = new DefaultFormatter(settings.options);
-
         }
 
-        public ILogProvider Provider => throw new NotSupportedException();
-
-        public LogLevel Level => throw new NotSupportedException();
+        public LogLevel BaseLevel => throw new NotImplementedException();
 
         public IScopeLog CreateLogger(string scope)
         {

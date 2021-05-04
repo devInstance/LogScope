@@ -21,7 +21,12 @@ Read more: http://devinstance.net/blog/dotnet-standard-logging-and-profiling</De
     <FileVersion>1.1.0.0</FileVersion>
     <PackageIcon>icon.png</PackageIcon>
     <RepositoryUrl>https://github.com/devInstance/LogScope</RepositoryUrl>
-    <PackageReleaseNotes>First release</PackageReleaseNotes>
+    <PackageReleaseNotes>
+        Release notes for 1.1.0:
+        - Fixed misspellings in the interfaces names;
+        - Interface dependency refactoring: IScopeManager no longer depends on ILogProvider directly;
+        - Changed some of the method names to avoid potential conflicts;
+    </PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
