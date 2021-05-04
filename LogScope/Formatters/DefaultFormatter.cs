@@ -2,13 +2,13 @@
 using System.Text;
 using System.Threading;
 
-namespace DevInstance.LogScope.Formaters
+namespace DevInstance.LogScope.Formatters
 {
-    public class DefaultFormaterOptions
+    public class DefaultFormattersOptions
     {
         public const string DefaultSeparator = ":";
-        public const string DefaultScopeStart = "-->";
-        public const string DefaultScopeEnd = "<--";
+        public const string DefaultScopeStart = "--> ";
+        public const string DefaultScopeEnd = "<-- ";
 
         public bool ShowTimestamp { get; set; }
         public bool ShowThreadNumber { get; set; }
@@ -16,7 +16,7 @@ namespace DevInstance.LogScope.Formaters
         public string ScopeStart { get; set; }
         public string ScopeEnd { get; set; }
 
-        public DefaultFormaterOptions()
+        public DefaultFormattersOptions()
         {
             Separator = Separator ?? DefaultSeparator;
             ScopeStart = ScopeStart ?? DefaultScopeStart;
@@ -24,11 +24,11 @@ namespace DevInstance.LogScope.Formaters
         }
     }
 
-    public class DefaultFormater : IScopeFormater
+    public class DefaultFormatter : IScopeFormatter
     {
-        public DefaultFormaterOptions Options { get; }
+        public DefaultFormattersOptions Options { get; }
 
-        public DefaultFormater(DefaultFormaterOptions options)
+        public DefaultFormatter(DefaultFormattersOptions options)
         {
             if(options != null)
             {
@@ -36,7 +36,7 @@ namespace DevInstance.LogScope.Formaters
             }
             else
             {
-                Options = new DefaultFormaterOptions();
+                Options = new DefaultFormattersOptions();
             }
         }
 

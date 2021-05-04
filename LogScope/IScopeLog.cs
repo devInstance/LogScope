@@ -11,7 +11,11 @@ namespace DevInstance.LogScope
     public enum LogLevel
     {
         /// <summary>
-        /// Mo messages should be written in the log.
+        /// Used then log defined in logging provider configuration.
+        /// </summary>
+        UNDEFINED,
+        /// <summary>
+        /// No messages should be written in the log.
         /// </summary>
         NOLOG,
         /// <summary>
@@ -37,7 +41,7 @@ namespace DevInstance.LogScope
     }
     /// <summary>
     /// Logging scope. Scope can be method or a specific part of it. The implementation is 
-    /// based on IDisposable where calling Dispose ends the scope.
+    /// based on IDisposable where calling Dispose ends the scope. This the core interface where most of the "magic" happens.
     /// </summary>
     public interface IScopeLog : IDisposable
     {

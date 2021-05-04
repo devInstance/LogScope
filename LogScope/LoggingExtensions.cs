@@ -8,9 +8,15 @@ namespace DevInstance.LogScope
     /// </summary>
     public static class LoggingExtensions
     {
-        public static IScopeLog CreateLogger(this IScopeManager provider, Type scope)
+        /// <summary>
+        /// Create a scope
+        /// </summary>
+        /// <param name="manager">scope manager</param>
+        /// <param name="scope"></param>
+        /// <returns></returns>
+        public static IScopeLog CreateLogger(this IScopeManager manager, Type scope)
         {
-            return provider.CreateLogger(scope.Name);
+            return manager.CreateLogger(scope.Name);
         }
 
         public static IScopeLog CreateLogger(this IScopeManager provider, Object scope)
@@ -42,6 +48,7 @@ namespace DevInstance.LogScope
         {
             log.Line(LogLevel.ERROR, $"Error!!!: {message}");
         }
+
         public static void E(this IScopeLog log, Exception ex)
         {
             log.Line(LogLevel.ERROR, $"Exception!!!: {ex.Message}");
@@ -66,7 +73,7 @@ namespace DevInstance.LogScope
 
         public static IScopeLog InfoScope(this IScopeLog log, [CallerMemberName] string scope = "scope")
         {
-            return log.Scope(LogLevel.DEBUG, scope);
+            return log.Scope(LogLevel.INFO, scope);
         }
 
         public static IScopeLog ErrorScope(this IScopeLog log, [CallerMemberName] string scope = "scope")

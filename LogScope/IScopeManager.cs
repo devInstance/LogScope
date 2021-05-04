@@ -4,19 +4,15 @@ using DevInstance.LogScope.Extensions;
 namespace DevInstance.LogScope
 {
     /// <summary>
-    /// IScopeManager defines the log manager. Use <see cref="ScopeLogFactory" />
+    /// IScopeManager defines the log manager. Use <see cref="DefaultScopeLogFactory" />
     /// or <see cref="ServiceExtensions" />.
     /// </summary>
     public interface IScopeManager
     {
         /// <summary>
-        /// Provider <see cref="Provider"/>
+        /// Base logging level that defines the minimum logging level for the application. <see cref="LogLevel"/>
         /// </summary>
-        ILogProvider Provider { get; }
-        /// <summary>
-        /// Logging level <see cref="LogLevel"/>
-        /// </summary>
-        LogLevel Level { get; }
+        LogLevel BaseLevel { get; }
         /// <summary>
         /// Creates a main scope
         /// </summary>

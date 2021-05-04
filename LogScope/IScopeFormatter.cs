@@ -5,12 +5,12 @@ using System.Text;
 namespace DevInstance.LogScope
 {
     /// <summary>
-    /// IScopeFormater defines the formatter interface. Every scope has start
+    /// IScopeFormatter defines the formatter interface. Every scope has start
     ///  and end, can contain nested scope and lines between start an end. In
     ///  addition to it, every scope can log the time of execution. Formatter
     ///  interfaces describes the contract for developing customize formatter.
     /// </summary>
-    public interface IScopeFormater
+    public interface IScopeFormatter
     {
         /// <summary>
         /// Called when scope starts

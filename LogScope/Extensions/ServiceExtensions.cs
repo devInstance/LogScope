@@ -1,4 +1,4 @@
-﻿using DevInstance.LogScope.Formaters;
+﻿using DevInstance.LogScope.Formatters;
 using DevInstance.LogScope.Logger;
 using DevInstance.LogScope.Providers.Console;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,7 +17,7 @@ namespace DevInstance.LogScope.Extensions
 
         /// <summary>
         /// Adds already instantiated manager to the service collection. This method is useful 
-        /// for adding manager with custom provider and formatter. <seealso cref="ScopeLogFactory"/>
+        /// for adding manager with custom provider and formatter. <seealso cref="DefaultScopeLogFactory"/>
         /// for more information how to create custom provider and formatter.
         /// <example>
         /// Here is the example how use it in ConfigureServices method in ASP.NET Core app:
@@ -26,7 +26,7 @@ namespace DevInstance.LogScope.Extensions
         /// {
         /// ...
         ///     var manager = ScopeLogFactory.Create(LogLevel.DEBUG, myprovider, myformatter);
-        ///     services.AddLoggingManager(manager);
+        ///     services.AddScopeLogging(manager);
         /// ...
         /// }
         /// </code>
@@ -35,7 +35,7 @@ namespace DevInstance.LogScope.Extensions
         /// <param name="col">collection of services</param>
         /// <param name="manager">instance of the log scope manager</param>
         /// <returns>A reference to this instance after the operation has completed</returns>
-        public static IServiceCollection AddLoggingManager(this IServiceCollection col, IScopeManager manager)
+        public static IServiceCollection AddScopeLogging(this IServiceCollection col, IScopeManager manager)
         {
             return col.AddSingleton(manager);
         }
@@ -47,7 +47,7 @@ namespace DevInstance.LogScope.Extensions
         /// public void ConfigureServices(IServiceCollection services)
         /// {
         /// ...
-        ///     services.AddConsoleLogging(LogLevel.DEBUG);
+        ///     services.AddConsoleScopeLogging(LogLevel.DEBUG);
         /// ...
         /// }
         /// </code>
@@ -56,9 +56,9 @@ namespace DevInstance.LogScope.Extensions
         /// <param name="col">collection of services</param>
         /// <param name="level">logging level. See <see cref="LogLevel"/></param>
         /// <returns>A reference to this instance after the operation has completed</returns>
-        public static IServiceCollection AddConsoleLogging(this IServiceCollection col, LogLevel level)
+        public static IServiceCollection AddConsoleScopeLogging(this IServiceCollection col, LogLevel level)
         {
-            return col.AddConsoleLogging(level, null);
+            return col.AddConsoleScopeLogging(level, null);
         }
         /// <summary>
         /// Creates and adds console manager to the service collection.
@@ -68,7 +68,7 @@ namespace DevInstance.LogScope.Extensions
         ///     public void ConfigureServices(IServiceCollection services)
         ///     {
         ///         ...
-        ///         services.AddConsoleLogging(LogLevel.DEBUG, new DefaultFormaterOptions { ShowTimestamp = true, ShowThreadNumber = true });
+        ///         services.AddConsoleScopeLogging(LogLevel.DEBUG, new DefaultFormaterOptions { ShowTimestamp = true, ShowThreadNumber = true });
         ///         ...
         ///     }
         ///     </code>
@@ -77,16 +77,16 @@ namespace DevInstance.LogScope.Extensions
         /// <param name="col">collection of services</param>
         /// <param name="level">logging level. See <see cref="LogLevel"/></param>
         /// <param name="options">
-        ///     Options for the default formatter. See <see cref="DefaultFormaterOptions"/>
+        ///     Options for the default formatter. See <see cref="DefaultFormattersOptions"/>
         /// </param>
         /// <returns>A reference to this instance after the operation has completed</returns>
-        public static IServiceCollection AddConsoleLogging(this IServiceCollection col, LogLevel level, DefaultFormaterOptions options)
+        public static IServiceCollection AddConsoleScopeLogging(this IServiceCollection col, LogLevel level, DefaultFormattersOptions options)
         {
             return col.AddSingleton<IScopeManager>(
-                new BaseScopeManager(
+                new DefaultScopeManager(
                     level,
                     new ConsoleLogProvider(),
-                    new DefaultFormater(options)
+                    new DefaultFormatter(options)
                     )
                 );
         }
