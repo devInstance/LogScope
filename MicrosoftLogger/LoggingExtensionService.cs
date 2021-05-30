@@ -24,5 +24,10 @@ namespace DevInstance.LogScope.Extensions.MicrosoftLogger
         {
             return new ScopeLog(logFactory, formatter, LogLevel.UNDEFINED, scope, false);
         }
+
+        public IScopeLog CreateLogger(string scope, LogLevel levelOverride)
+        {
+            throw new NotSupportedException("Override is not supported by Microsoft Logger");
+        }
     }
 }

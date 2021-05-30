@@ -12,7 +12,7 @@ namespace MicrosoftLoggerSampleApp
             var host = CreateHostBuilder(args).Build();
 
             var factory = host.Services.GetRequiredService<ILoggerFactory>();
-            logger.LogInformation("Host created.");
+            //logger.LogInformation("Host created.");
 
             host.RunAsync();
         }

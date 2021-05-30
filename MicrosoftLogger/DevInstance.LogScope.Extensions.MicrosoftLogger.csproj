@@ -9,15 +9,17 @@ Read more: http://devinstance.net/blog/dotnet-standard-logging-and-profiling
     <PackageProjectUrl>http://logscope.devinstance.net</PackageProjectUrl>
     <PackageTags>logging, profiling, tracing</PackageTags>
     <PackageIcon>icon.png</PackageIcon>
-    <PackageReleaseNotes>First preview release</PackageReleaseNotes>
-    <Version>0.9.0</Version>
+    <PackageReleaseNotes>Support of LogScope 1.2.0</PackageReleaseNotes>
+    <Version>0.9.1</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <AssemblyVersion>0.9.1.0</AssemblyVersion>
+    <FileVersion>0.9.1.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DevInstance.LogScope" Version="1.1.0" />
+    <PackageReference Include="DevInstance.LogScope" Version="1.2.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
   </ItemGroup>

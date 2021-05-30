@@ -19,6 +19,8 @@ namespace DevInstance.LogScope.Extensions.MicrosoftLogger
         public IScopeFormatter Formatter { get; }
         public ILoggerFactory Factory { get; set; }
 
+        public LogLevel Level => ScopeLevel;
+
         public ScopeLog(ILoggerFactory factory, IScopeFormatter formatter, LogLevel scopeLevel, string scope, bool logConstructor)
         {
             if (formatter == null)
