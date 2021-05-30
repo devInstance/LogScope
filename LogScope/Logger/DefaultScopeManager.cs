@@ -26,8 +26,12 @@ namespace DevInstance.LogScope.Logger
 
         public IScopeLog CreateLogger([CallerMemberName] string scope = null)
         {
-            return new DefaultScopeLog(this, Formater, Provider, BaseLevel, scope, false);
+            return new DefaultScopeLog(this, BaseLevel, Formater, Provider, BaseLevel, scope, false);
         }
 
+        public IScopeLog CreateLogger(string scope, LogLevel levelOverride)
+        {
+            return new DefaultScopeLog(this, levelOverride, Formater, Provider, levelOverride, scope, false);
+        }
     }
 }

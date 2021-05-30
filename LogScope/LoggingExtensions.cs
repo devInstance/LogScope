@@ -24,6 +24,16 @@ namespace DevInstance.LogScope
             return provider.CreateLogger(scope.GetType().Name);
         }
 
+        public static IScopeLog CreateLogger(this IScopeManager manager, Type scope, LogLevel levelOverride)
+        {
+            return manager.CreateLogger(scope.Name, levelOverride);
+        }
+
+        public static IScopeLog CreateLogger(this IScopeManager provider, Object scope, LogLevel levelOverride)
+        {
+            return provider.CreateLogger(scope.GetType().Name, levelOverride);
+        }
+
         public static void T(this IScopeLog log, string message)
         {
             log.Line(LogLevel.TRACE, message);

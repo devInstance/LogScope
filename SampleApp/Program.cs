@@ -14,17 +14,33 @@ namespace DevInstance.LogScope.SampleApp
 
             Console.WriteLine(" ======== With Timestamp and Thread options ========");
             manager = DefaultScopeLogFactory.CreateConsoleLogger(LogLevel.TRACE, new DefaultFormattersOptions { ShowTimestamp = true, ShowThreadNumber = true });
-
             new TestClass(manager).MethodA();
 
             var log = manager.CreateLogger("log test");
+            LoggingTest(log);
+
+            Console.WriteLine(" ======== With Override ========");
+            manager = DefaultScopeLogFactory.CreateConsoleLogger(LogLevel.INFO, new DefaultFormattersOptions { ShowTimestamp = true, ShowThreadNumber = true });
+            new TestClass(manager).MethodA();
+
+            Console.WriteLine(" ---Default level");
+            log = manager.CreateLogger("log test");
+            LoggingTest(log);
+
+            Console.WriteLine(" ---Override level");
+            log = manager.CreateLogger("log test", LogLevel.TRACE);
+            LoggingTest(log);
+
+            Console.ReadKey();
+        }
+
+        private static void LoggingTest(IScopeLog log)
+        {
             log.E("Logging an error");
             log.W("Logging a warning");
             log.I("Logging an information");
             log.D("Logging a debug line");
             log.T("Logging a trace line");
-
-            Console.ReadKey();
         }
     }
 }

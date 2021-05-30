@@ -19,5 +19,12 @@ namespace DevInstance.LogScope
         /// <param name="scope">scope's name</param>
         /// <returns>Reference to the scope <see cref="IScopeLog"/></returns>
         IScopeLog CreateLogger(string scope);
+        /// <summary>
+        /// Creates a main scope with custom logging level
+        /// </summary>
+        /// <param name="scope">scope's name</param>
+        /// <param name="levelOverride">level override</param>
+        /// <returns></returns>
+        IScopeLog CreateLogger(string scope, LogLevel levelOverride);
     }
 }

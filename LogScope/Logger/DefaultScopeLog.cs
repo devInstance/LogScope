@@ -13,8 +13,16 @@ namespace DevInstance.LogScope.Logger
         public IScopeFormatter Formatter { get; }
         public LogLevel ScopeLevel { get; }
         public string Name { get; }
+        public LogLevel Level { get => BaseLevel; }
+        private LogLevel BaseLevel;
 
-        public DefaultScopeLog(IScopeManager manager, IScopeFormatter formater, ILogProvider provider, LogLevel scopeLevel, string scope, bool logConstructor)
+        public DefaultScopeLog(IScopeManager manager, 
+                                LogLevel baseLevel, 
+                                IScopeFormatter formater, 
+                                ILogProvider provider, 
+                                LogLevel scopeLevel, 
+                                string scope, 
+                                bool logConstructor)
         {
             if (manager == null || formater == null || provider == null)
             {
@@ -23,11 +31,12 @@ namespace DevInstance.LogScope.Logger
 
             timeStart = DateTime.Now;
             ScopeLevel = scopeLevel;
+            BaseLevel = baseLevel;
             Name = scope;
             Manager = manager;
             Formatter = formater;
             Provider = provider;
-            if (logConstructor && ScopeLevel <= manager.BaseLevel && !String.IsNullOrEmpty(Name))
+            if (logConstructor && ScopeLevel <= BaseLevel && !String.IsNullOrEmpty(Name))
             {
                 Provider.WriteLine(ScopeLevel, formater.ScopeStart(timeStart, Name));
             }
@@ -45,12 +54,12 @@ namespace DevInstance.LogScope.Logger
             {
                 s = Formatter.FormatNestedScopes(Name, childScope);
             }
-            return new DefaultScopeLog(Manager, Formatter, Provider, level, s, true);
+            return new DefaultScopeLog(Manager, BaseLevel, Formatter, Provider, level, s, true);
         }
 
         public void Dispose()
         {
-            if (ScopeLevel <= Manager.BaseLevel)
+            if (ScopeLevel <= BaseLevel)
             {
                 var endTime = DateTime.Now;
                 var execTime = endTime - timeStart;
@@ -65,7 +74,7 @@ namespace DevInstance.LogScope.Logger
                 throw new ArgumentNullException("There is no meaning in the empty message.");
             }
 
-            if (l <= Manager.BaseLevel)
+            if (l <= BaseLevel)
             {
                 Provider.WriteLine(ScopeLevel, Formatter.FormatLine(Name, message));
             }
@@ -88,7 +97,7 @@ namespace DevInstance.LogScope.Logger
             {
                 s = Formatter.FormatNestedScopes(Name, scope);
             }
-            return new DefaultScopeLog(Manager, Formatter, Provider, Manager.BaseLevel, s, true);
+            return new DefaultScopeLog(Manager, BaseLevel, Formatter, Provider, Manager.BaseLevel, s, true);
         }
     }
 }

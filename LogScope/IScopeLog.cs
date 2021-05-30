@@ -73,5 +73,9 @@ namespace DevInstance.LogScope
         /// <param name="scope"></param>
         /// <returns></returns>
         IScopeLog Scope(string scope);
+        /// <summary>
+        /// Returns current log level. Setting new level will override default value.
+        /// </summary>
+        LogLevel Level { get; }
     }
 }

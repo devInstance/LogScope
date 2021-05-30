@@ -227,6 +227,11 @@
             <param name="scope"></param>
             <returns></returns>
         </member>
+        <member name="P:DevInstance.LogScope.IScopeLog.Level">
+            <summary>
+            Returns current log level. Setting new level will override default value.
+            </summary>
+        </member>
         <member name="T:DevInstance.LogScope.IScopeManager">
             <summary>
             IScopeManager defines the log manager. Use <see cref="T:DevInstance.LogScope.DefaultScopeLogFactory" />
@@ -244,6 +249,14 @@
             </summary>
             <param name="scope">scope's name</param>
             <returns>Reference to the scope <see cref="T:DevInstance.LogScope.IScopeLog"/></returns>
+        </member>
+        <member name="M:DevInstance.LogScope.IScopeManager.CreateLogger(System.String,DevInstance.LogScope.LogLevel)">
+            <summary>
+            Creates a main scope with custom logging level
+            </summary>
+            <param name="scope">scope's name</param>
+            <param name="levelOverride">level override</param>
+            <returns></returns>
         </member>
         <member name="T:DevInstance.LogScope.LoggingExtensions">
             <summary>
