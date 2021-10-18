@@ -69,4 +69,4 @@ Result:
 21-01-29 23:07:25<-- end of TestClass:MethodA, time:480.5525 msec
 ```
 
-See more https://devinstance.net/blog/dotnet-standard-logging-and-profiling
+See more https://devinstance.net/blog/introducing-logscope
