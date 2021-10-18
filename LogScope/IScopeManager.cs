@@ -20,7 +20,8 @@ namespace DevInstance.LogScope
         /// <returns>Reference to the scope <see cref="IScopeLog"/></returns>
         IScopeLog CreateLogger(string scope);
         /// <summary>
-        /// Creates a main scope with custom logging level
+        /// Creates a main scope with custom logging level. This method should be used for
+        /// debug purposes only.
         /// </summary>
         /// <param name="scope">scope's name</param>
         /// <param name="levelOverride">level override</param>
