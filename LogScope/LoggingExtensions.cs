@@ -36,59 +36,80 @@ namespace DevInstance.LogScope
 
         public static void T(this IScopeLog log, string message)
         {
-            log.Line(LogLevel.TRACE, message);
+            if (log != null)
+            {
+                log.Line(LogLevel.TRACE, message);
+            }
         }
 
         public static void D(this IScopeLog log, string message)
         {
-            log.Line(LogLevel.DEBUG, message);
+            if (log != null)
+            {
+                log.Line(LogLevel.DEBUG, message);
+            }
         }
 
         public static void I(this IScopeLog log, string message)
         {
-            log.Line(LogLevel.INFO, message);
+            if (log != null)
+            {
+                log.Line(LogLevel.INFO, message);
+            }
         }
 
         public static void W(this IScopeLog log, string message)
         {
-            log.Line(LogLevel.WARNING, message);
+            if (log != null)
+            {
+                log.Line(LogLevel.WARNING, message);
+            }
         }
 
         public static void E(this IScopeLog log, string message)
         {
-            log.Line(LogLevel.ERROR, $"Error!!!: {message}");
+            if (log != null)
+            {
+                log.Line(LogLevel.ERROR, $"Error!!!: {message}");
+            }
         }
 
         public static void E(this IScopeLog log, Exception ex)
         {
-            log.Line(LogLevel.ERROR, $"Exception!!!: {ex.Message}");
-            log.Line(LogLevel.ERROR, ex.StackTrace);
+            if (log != null)
+            {
+                log.Line(LogLevel.ERROR, $"Exception!!!: {ex.Message}");
+                log.Line(LogLevel.ERROR, ex.StackTrace);
+            }
         }
 
         public static void E(this IScopeLog log, string message, Exception ex)
         {
-            log.Line(LogLevel.ERROR, $"Exception!!!: {message}");
-            log.Line(LogLevel.ERROR, ex.StackTrace);
+            if (log != null)
+            {
+                log.Line(LogLevel.ERROR, $"Exception!!!: {message}");
+                log.Line(LogLevel.ERROR, ex.StackTrace);
+            }
         }
 
         public static IScopeLog TraceScope(this IScopeLog log, [CallerMemberName] string scope = "scope")
         {
-            return log.Scope(LogLevel.TRACE, scope);
+            return log != null ? log.Scope(LogLevel.TRACE, scope) : null;
         }
 
         public static IScopeLog DebugScope(this IScopeLog log, [CallerMemberName] string scope = "scope")
         {
-            return log.Scope(LogLevel.DEBUG, scope);
+            return log != null ? log.Scope(LogLevel.DEBUG, scope) : null;
         }
 
         public static IScopeLog InfoScope(this IScopeLog log, [CallerMemberName] string scope = "scope")
         {
-            return log.Scope(LogLevel.INFO, scope);
+            return log != null ? log.Scope(LogLevel.INFO, scope) : null;
         }
 
         public static IScopeLog ErrorScope(this IScopeLog log, [CallerMemberName] string scope = "scope")
         {
-            return log.Scope(LogLevel.ERROR, scope);
+            return log != null ? log.Scope(LogLevel.ERROR, scope) : null;
         }
     }
 }
