@@ -1,6 +1,4 @@
 ﻿
-using DevInstance.LogScope.Extensions;
-
 namespace DevInstance.LogScope
 {
     /// <summary>

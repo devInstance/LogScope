@@ -1,9 +1,9 @@
-﻿using DevInstance.LogScope.Formatters;
-using System;
+﻿using System;
 using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("DevInstance.LogScope.Extensions.MicrosoftLogger")]
 [assembly: InternalsVisibleTo("LogScope.Tests")]
+[assembly: InternalsVisibleTo("DevInstance.LogScope.NET")]
 namespace DevInstance.LogScope.Logger
 {
     internal class DefaultScopeManager : IScopeManager
