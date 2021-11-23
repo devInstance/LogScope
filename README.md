@@ -1,6 +1,6 @@
 # LogScope
 
-![status](https://img.shields.io/badge/logscope.net-1.3.0--latest-green.svg?style=plastic)
+[![status](https://img.shields.io/badge/logscope.net-1.3.0--latest-green.svg?style=plastic)](https://dev.azure.com/devinstancenet/LogScope.NET/_build?definitionId=5&_a=summary)
 
 .NET Standard 2.0: Logging, tracing and profiling
 
