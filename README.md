@@ -1,5 +1,7 @@
 # LogScope
 
+![status](https://img.shields.io/badge/logscope.net-1.3.0--latest-green.svg?style=plastic)
+
 .NET Standard 2.0: Logging, tracing and profiling
 
 LogScope implements simple logging framework for tracing, profiling and logging methods and critical parts of the code. It can be integrated with popular logging library (such as Log4Net, NLog, etc). The whole idea is around using a “scope”. Scope can be method or a specific part of it. The implementation is based on IDisposable where calling Dispose ends the scope. The following example demonstrate this approach:
