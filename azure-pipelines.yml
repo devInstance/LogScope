@@ -24,11 +24,25 @@ steps:
     restoreSolution: '$(solution)'
 # The first task is the dotnet command build, pointing to our csproj file
 - task: DotNetCoreCLI@2
-  displayName: 'dotnet build'
+  displayName: 'dotnet build $(project_standard)'
   inputs:
     command: 'build'
     arguments: '--configuration $(buildConfiguration)'
     projects: '$(project_standard)'
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet build $(project_net)'
+  inputs:
+    command: 'build'
+    arguments: '--configuration $(buildConfiguration)'
+    projects: '$(project_net)'
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet build $(project_microsoft)'
+  inputs:
+    command: 'build'
+    arguments: '--configuration $(buildConfiguration)'
+    projects: '$(project_microsoft)'
 
 # The second task is dotnet pack command again pointing to the csproj file
 # The nobuild means the project will not be compiled before running pack, because its already built in above step
