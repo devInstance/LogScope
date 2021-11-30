@@ -10,7 +10,9 @@ pool: default
 
 variables:
   solution: 'LogScope.NET.sln'
-  project: 'LogScope.NET/LogScope.NET.csproj'
+  project_standard: 'LogScope/LogScope.csproj'
+  project_net: 'LogScope.NET/LogScope.NET.csproj'
+  project_microsoft: 'MicrosoftLogger/DevInstance.LogScope.Extensions.MicrosoftLogger.csproj'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
@@ -31,11 +33,29 @@ steps:
 # The second task is dotnet pack command again pointing to the csproj file
 # The nobuild means the project will not be compiled before running pack, because its already built in above step
 - task: DotNetCoreCLI@2
-  displayName: "dotnet pack"
+  displayName: "dotnet pack $(project_standard)"
   inputs:
     command: 'pack'
     arguments: '--configuration $(buildConfiguration)'
-    packagesToPack: '$(project)'
+    packagesToPack: '$(project_standard)'
+    nobuild: true
+    versioningScheme: 'off'
+
+- task: DotNetCoreCLI@2
+  displayName: "dotnet pack $(project_net)"
+  inputs:
+    command: 'pack'
+    arguments: '--configuration $(buildConfiguration)'
+    packagesToPack: '$(project_net)'
+    nobuild: true
+    versioningScheme: 'off'
+
+- task: DotNetCoreCLI@2
+  displayName: "dotnet pack $(project_microsoft)"
+  inputs:
+    command: 'pack'
+    arguments: '--configuration $(buildConfiguration)'
+    packagesToPack: '$(project_microsoft)'
     nobuild: true
     versioningScheme: 'off'
 
