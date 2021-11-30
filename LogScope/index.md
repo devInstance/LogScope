@@ -10,15 +10,27 @@ the actual logging function and formatter oversees formatting message line. The 
 console provider and default formatter.
 
 ## Installation
-LogScope is available in NuGet package manager: https://www.nuget.org/packages/DevInstance.LogScope/
+LogScope is available in NuGet package manager: https://www.nuget.org/packages/DevInstance.LogScope/ or https://www.nuget.org/packages/DevInstance.LogScope.NET/
 
-Console:
+**Power shell:**
+
+.Net Standard 2.0:
 
     dotnet add package DevInstance.LogScope
 
-Package manager:
+.Net 6.0:
+
+    dotnet add package DevInstance.LogScope.NET
+
+**Package manager:**
+
+.Net Standard 2.0:
 
     Install-Package DevInstance.LogScope
+
+.Net 6.0:
+
+    Install-Package DevInstance.LogScope.NET
 
 ## Setup
 The first step is using ScopeLogFactory to instantiate a manager. For instance, logging to the console with debug level, manager can be instantiated using:
@@ -33,7 +45,7 @@ If you need to provide custom log provider or formatter:
 
     var manager = ScopeLogFactory.Create(LogLevel.DEBUG, customProvider, customrFormater);
 
-For ASP.NET Core applications or WebAsembly, there are extensions to add manager to Service collection (IServiceCollection):
+For ASP.NET Core applications or WebAsembly, DevInstance.LogScope.NET package provides extensions to add manager to Service collection (IServiceCollection):
 
     services.AddConsoleLogging(LogLevel.INFO); 
 
@@ -82,13 +94,6 @@ Here the result in the log:
 As you can see, there are three scopes in this example: TestClass (created in the constructor), MethodFoo and a local scope "a-scope". 
 Every logging line contains the "scope path" (e.g "TestClass:MethodFoo:a-scope") as well as "-->" begin and end "<--" of every scope. 
 Knowing the scope's being and end can be useful when analyzing asynchronous parts of the code.
-
-## Extensions
-One of the goals of this library is to maintain simplicity and keep the code clean. 
-The following snipped "using (var methodScope = log.DebugScope())" would not be a great 
-example but library provides extensions to make logging code lines as short as possible.
-
-Please see [ServiceExtensions](api/DevInstance.LogScope.Extensions.ServiceExtensions.html)
 
 ## Documentation
 Please check [API reference](api/DevInstance.LogScope.html)
