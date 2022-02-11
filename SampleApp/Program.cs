@@ -12,15 +12,15 @@ namespace DevInstance.LogScope.SampleApp
 
             new TestClass(manager).MethodA();
 
-            Console.WriteLine(" ======== With Timestamp and Thread options ========");
-            manager = DefaultScopeLogFactory.CreateConsoleLogger(LogLevel.TRACE, new DefaultFormattersOptions { ShowTimestamp = true, ShowThreadNumber = true });
+            Console.WriteLine(" ======== With Timestamp, Thread and SHow Id options ========");
+            manager = DefaultScopeLogFactory.CreateConsoleLogger(LogLevel.TRACE, new DefaultFormattersOptions { ShowTimestamp = true, ShowThreadNumber = true, ShowId = true });
             new TestClass(manager).MethodA();
 
             var log = manager.CreateLogger("log test");
             LoggingTest(log);
 
             Console.WriteLine(" ======== With Override ========");
-            manager = DefaultScopeLogFactory.CreateConsoleLogger(LogLevel.INFO, new DefaultFormattersOptions { ShowTimestamp = true, ShowThreadNumber = true });
+            manager = DefaultScopeLogFactory.CreateConsoleLogger(LogLevel.INFO, new DefaultFormattersOptions { ShowTimestamp = true, ShowThreadNumber = true, ShowId = true });
             new TestClass(manager).MethodA();
 
             Console.WriteLine(" ---Default level");

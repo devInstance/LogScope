@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogScope.Tests", "LogScope.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleApp", "SampleApp\SampleApp.csproj", "{3D063725-2419-4FBD-A4B7-C8C69889642B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogScope.NET", "LogScope.NET\LogScope.NET.csproj", "{D40E463A-1157-405C-9851-4B5A5DA23ABA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogScope.NET", "LogScope.NET\LogScope.NET.csproj", "{D40E463A-1157-405C-9851-4B5A5DA23ABA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -21,6 +21,8 @@ namespace DevInstance.LogScope.Extensions.MicrosoftLogger
 
         public LogLevel Level => ScopeLevel;
 
+        public string Id { get;}
+
         public ScopeLog(ILoggerFactory factory, IScopeFormatter formatter, LogLevel scopeLevel, string scope, bool logConstructor)
         {
             if (formatter == null)
@@ -36,10 +38,11 @@ namespace DevInstance.LogScope.Extensions.MicrosoftLogger
             ScopeLevel = scopeLevel;
             MLevel = ConvertLevel(scopeLevel);
             Name = scope;
+            Id = Guid.NewGuid().ToString();
             Formatter = formatter;
             if (logConstructor && !String.IsNullOrEmpty(Name))
             {
-                this.logger.Log(MLevel, formatter.ScopeStart(timeStart, Name));
+                this.logger.Log(MLevel, formatter.ScopeStart(timeStart, this));
             }
 
         }
@@ -48,7 +51,7 @@ namespace DevInstance.LogScope.Extensions.MicrosoftLogger
         {
             var endTime = DateTime.Now;
             var execTime = endTime - timeStart;
-            this.logger.Log(MLevel, Formatter.ScopeEnd(endTime, Name, execTime));
+            this.logger.Log(MLevel, Formatter.ScopeEnd(endTime, this, execTime));
         }
 
         private MLogLevel ConvertLevel(LogLevel level)
@@ -82,7 +85,7 @@ namespace DevInstance.LogScope.Extensions.MicrosoftLogger
 
         public void Line(LogLevel level, string message)
         {
-            logger.Log(ConvertLevel(level), Formatter.FormatLine(Name, message));
+            logger.Log(ConvertLevel(level), Formatter.FormatLine(this, message));
         }
         public void Line(string message)
         {

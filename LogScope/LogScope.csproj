@@ -4,9 +4,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>DevInstance.LogScope</RootNamespace>
     <AssemblyName>DevInstance.LogScope</AssemblyName>
-    <Version>1.3.0</Version>
+    <Version>1.4.0</Version>
     <Authors>Yuriy Frankiv</Authors>
-    <Company>DevInstance</Company>
+    <Company>DevInstance LLC</Company>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>
@@ -14,25 +14,27 @@
         Quick introduction: https://devinstance.net/blog/introducing-logscope
         Documentation: http://logscope.devinstance.net
     </Description>
-    <Copyright>(c) 2021 DevInstance</Copyright>
+    <Copyright>(c) 2022 DevInstance LLC</Copyright>
     <PackageProjectUrl>http://logscope.devinstance.net</PackageProjectUrl>
     <PackageTags>logging, profiling, tracing</PackageTags>
     <SignAssembly>false</SignAssembly>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <AssemblyVersion>1.3.1.0</AssemblyVersion>
-    <FileVersion>1.3.1.0</FileVersion>
+    <AssemblyVersion>1.4.1.0</AssemblyVersion>
+    <FileVersion>1.4.1.0</FileVersion>
     <PackageIcon>icon.png</PackageIcon>
     <RepositoryUrl>https://github.com/devInstance/LogScope</RepositoryUrl>
     <PackageReleaseNotes>
-        Release notes for 1.3.1:
-            - Improved performance of the scope logging;
-    </PackageReleaseNotes>
+		Release notes for 1.4.1:
+		- Added ability to track scope instance using 'Scope.Id";
+		Release notes for 1.3.1:
+		- Improved performance of the scope logging;
+	</PackageReleaseNotes>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
         <DocumentationFile>C:\Projects\blog-projects\LogScope\LogScope\DevInstance.LogScope.xml</DocumentationFile>
     </PropertyGroup>
     <ItemGroup>
-        <PackageReference Include="docfx.console" Version="2.58.9">
+        <PackageReference Include="docfx.console" Version="2.59.0">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>

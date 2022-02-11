@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevInstance.LogScope.Utils;
+using System;
 using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("LogScope.Tests")]
@@ -13,7 +14,9 @@ namespace DevInstance.LogScope.Logger
         public IScopeFormatter Formatter { get; }
         public LogLevel ScopeLevel { get; }
         public string Name { get; }
+        public string Id { get;  }
         public LogLevel Level { get => BaseLevel; }
+
         private LogLevel BaseLevel;
 
         public DefaultScopeLog(IScopeManager manager, 
@@ -33,12 +36,13 @@ namespace DevInstance.LogScope.Logger
             ScopeLevel = scopeLevel;
             BaseLevel = baseLevel;
             Name = scope;
+            Id = Guid.NewGuid().ToString();// IdGenerator.FromGuid(Guid.NewGuid());
             Manager = manager;
             Formatter = formater;
             Provider = provider;
             if (logConstructor && ScopeLevel <= BaseLevel && !String.IsNullOrEmpty(Name))
             {
-                Provider.WriteLine(ScopeLevel, formater.ScopeStart(timeStart, Name));
+                Provider.WriteLine(ScopeLevel, formater.ScopeStart(timeStart, this));
             }
         }
 
@@ -63,7 +67,7 @@ namespace DevInstance.LogScope.Logger
             {
                 var endTime = DateTime.Now;
                 var execTime = endTime - timeStart;
-                Provider.WriteLine(ScopeLevel, Formatter.ScopeEnd(endTime, Name, execTime));
+                Provider.WriteLine(ScopeLevel, Formatter.ScopeEnd(endTime, this, execTime));
             }
         }
 
@@ -76,13 +80,13 @@ namespace DevInstance.LogScope.Logger
 
             if (l <= BaseLevel)
             {
-                Provider.WriteLine(ScopeLevel, Formatter.FormatLine(Name, message));
+                Provider.WriteLine(ScopeLevel, Formatter.FormatLine(this, message));
             }
         }
 
         public void Line(string message)
         {
-            Provider.WriteLine(ScopeLevel, Formatter.FormatLine(Name, message));
+            Provider.WriteLine(ScopeLevel, Formatter.FormatLine(this, message));
         }
 
         public IScopeLog Scope(string scope)

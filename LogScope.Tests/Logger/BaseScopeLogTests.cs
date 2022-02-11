@@ -80,8 +80,8 @@ namespace DevInstance.LogScope.Logger.Tests
             var manager = new Mock<IScopeManager>();
             manager.Setup(x => x.BaseLevel).Returns(logLevel);
             var formater = new Mock<IScopeFormatter>();
-            formater.Setup(x => x.ScopeStart(It.IsAny<DateTime>(), It.IsAny<string>())).Returns("startscope");
-            formater.Setup(x => x.ScopeEnd(It.IsAny<DateTime>(), It.IsAny<string>(), It.IsAny<TimeSpan>())).Returns("endscope");
+            formater.Setup(x => x.ScopeStart(It.IsAny<DateTime>(), It.IsAny<IScopeLog>())).Returns("startscope");
+            formater.Setup(x => x.ScopeEnd(It.IsAny<DateTime>(), It.IsAny<IScopeLog>(), It.IsAny<TimeSpan>())).Returns("endscope");
 
             var scopeLog = new DefaultScopeLog(manager.Object, overideLevel, formater.Object, provider.Object, scopeLevel, "test", logConstructor);
 
@@ -103,7 +103,7 @@ namespace DevInstance.LogScope.Logger.Tests
             var manager = new Mock<IScopeManager>();
             manager.Setup(x => x.BaseLevel).Returns(logLevel);
             var formater = new Mock<IScopeFormatter>();
-            formater.Setup(x => x.FormatLine(It.Is<string>(v => v == "test"), It.Is<string>(v => v.Contains(message)))).Returns(message);
+            formater.Setup(x => x.FormatLine(It.Is<IScopeLog>(v => v.Name == "test"), It.Is<string>(v => v.Contains(message)))).Returns(message);
 
             var scopeLog = new DefaultScopeLog(manager.Object, logLevel, formater.Object, provider.Object, scopeLevel, "test", false);
             scopeLog.Line(scopeLevel, message);

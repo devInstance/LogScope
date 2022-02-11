@@ -50,6 +50,10 @@ namespace DevInstance.LogScope
         /// </summary>
         string Name { get; }
         /// <summary>
+        /// A unique number of the instance scope
+        /// </summary>
+        string Id { get; }
+        /// <summary>
         /// Write one line
         /// </summary>
         /// <param name="level">Log level <see cref="LogLevel"/></param>
