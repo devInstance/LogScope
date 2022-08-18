@@ -8,57 +8,89 @@ namespace DevInstance.LogScope.Logger
 {
     internal class DefaultScopeLog : IScopeLog
     {
+        private LContext context;
         private DateTime timeStart;
-        public ILogProvider Provider { get; }
-        public IScopeManager Manager { get; }
-        public IScopeFormatter Formatter { get; }
+        public ILogProvider Provider { get => context.Provider; }
+        public IScopeManager Manager { get => context.Manager; }
+        public IScopeFormatter Formatter { get => context.Formatter; }
         public LogLevel ScopeLevel { get; }
-        public string Name { get; }
-        public string Id { get;  }
+
+        private string name = null;
+        public string Name
+        {
+            get
+            {
+                if (name == null)
+                {
+                    if (parentScope != null)
+                    {
+                        name = Formatter.FormatNestedScopes(parentScope, childScope);
+                    }
+                    else
+                    {
+                        name = childScope;
+                    }
+                }
+                return name;
+            }
+        }
+
+        private string parentScope;
+        private string childScope;
+
+        private string scopeId = null;
+        public string Id
+        {
+            get
+            {
+                if (scopeId == null)
+                {
+                    scopeId = Guid.NewGuid().ToString();
+                }
+                return scopeId;
+            }
+        }
         public LogLevel Level { get => BaseLevel; }
 
         private LogLevel BaseLevel;
 
-        public DefaultScopeLog(IScopeManager manager, 
-                                LogLevel baseLevel, 
-                                IScopeFormatter formater, 
-                                ILogProvider provider, 
-                                LogLevel scopeLevel, 
-                                string scope, 
+        public DefaultScopeLog(LContext ctx,
+                                LogLevel baseLevel,
+                                LogLevel scopeLevel,
+                                string prnttScope,
+                                string chldScope,
                                 bool logConstructor)
         {
-            if (manager == null || formater == null || provider == null)
-            {
-                throw new ArgumentNullException();
-            }
-
-            timeStart = DateTime.Now;
             ScopeLevel = scopeLevel;
             BaseLevel = baseLevel;
-            Name = scope;
-            Id = Guid.NewGuid().ToString();// IdGenerator.FromGuid(Guid.NewGuid());
-            Manager = manager;
-            Formatter = formater;
-            Provider = provider;
-            if (logConstructor && ScopeLevel <= BaseLevel && !String.IsNullOrEmpty(Name))
+            childScope = chldScope;
+            parentScope = prnttScope;
+            context = ctx;
+
+            if (ScopeLevel <= BaseLevel)
             {
-                Provider.WriteLine(ScopeLevel, formater.ScopeStart(timeStart, this));
+                timeStart = DateTime.Now;
+                if (logConstructor && Name != null)
+                {
+                    Provider.WriteLine(ScopeLevel, context.Formatter.ScopeStart(timeStart, this));
+                }
             }
         }
 
         public IScopeLog Scope(LogLevel level, string childScope)
         {
+#if DEBUG
             if (String.IsNullOrEmpty(childScope))
             {
                 throw new ArgumentException("There is no reason of having scope without name.");
             }
+#endif
+            return new DefaultScopeLog(context, BaseLevel, level, Name, childScope, true);
+        }
 
-            var s = childScope;
-            if (!String.IsNullOrEmpty(Name))
-            {
-                s = Formatter.FormatNestedScopes(Name, childScope);
-            }
-            return new DefaultScopeLog(Manager, BaseLevel, Formatter, Provider, level, s, true);
+        public IScopeLog Scope(string scope)
+        {
+            return Scope(Manager.BaseLevel, scope);
         }
 
         public void Dispose()
@@ -73,11 +105,6 @@ namespace DevInstance.LogScope.Logger
 
         public void Line(LogLevel l, string message)
         {
-            if (String.IsNullOrEmpty(message))
-            {
-                throw new ArgumentNullException("There is no meaning in the empty message.");
-            }
-
             if (l <= BaseLevel)
             {
                 Provider.WriteLine(ScopeLevel, Formatter.FormatLine(this, message));
@@ -87,21 +114,6 @@ namespace DevInstance.LogScope.Logger
         public void Line(string message)
         {
             Provider.WriteLine(ScopeLevel, Formatter.FormatLine(this, message));
-        }
-
-        public IScopeLog Scope(string scope)
-        {
-            if (String.IsNullOrEmpty(scope))
-            {
-                throw new ArgumentException("There is no reason of having scope without name.");
-            }
-
-            var s = scope;
-            if (!String.IsNullOrEmpty(Name))
-            {
-                s = Formatter.FormatNestedScopes(Name, scope);
-            }
-            return new DefaultScopeLog(Manager, BaseLevel, Formatter, Provider, Manager.BaseLevel, s, true);
         }
     }
 }
