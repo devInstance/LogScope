@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using DevInstance.LogScope.Extensions.MicrosoftLogger;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,9 +12,9 @@ namespace MicrosoftLoggerSampleApp
         {
             var host = CreateHostBuilder(args).Build();
 
-            var factory = host.Services.GetRequiredService<ILoggerFactory>();
+            //var factory = host.Services.GetRequiredService<ILoggerFactory>();
             //logger.LogInformation("Host created.");
-
+            
             host.RunAsync();
         }
 
@@ -21,7 +22,13 @@ namespace MicrosoftLoggerSampleApp
         {
             return Host
                 .CreateDefaultBuilder(args)
-                .ConfigureLogging(logging => logging.SetMinimumLevel(LogLevel.Warning));
+                .ConfigureServices((_, services) =>
+                    {
+                        services.AddHostedService<SampleLoggingHostedService>();
+                        services.AddMicrosoftScopeLogging();
+                    }
+                )
+                .ConfigureLogging(logging => logging.SetMinimumLevel(LogLevel.Trace));
         }
     }
 }
