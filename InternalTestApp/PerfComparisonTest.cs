@@ -66,26 +66,26 @@ namespace InternalTestApp
 
     internal class PerfComparisonTest
     {
-        public void Test()
+        public void Test(IScopeManager manager)
         {
-            var manager = DefaultScopeLogFactory.CreateConsoleLogger(LogLevel.INFO, new DefaultFormattersOptions { ShowTimestamp = true, ShowThreadNumber = true, ShowId = true });
             var scope = manager.CreateLogger("MainLogger");
-            long maxCycles = 100000000;
+            //long maxCycles = 100000000;
+            long maxCycles = 1000000;
 
-            Console.WriteLine(" ======== Warm up ========");
+            scope.I(" ======== Warm up ========");
             TestBasicScope(scope, maxCycles, 0);
 
-            Console.WriteLine(" ======== Go ========");
+            scope.I(" ======== Go ========");
 
-            TestBasicScope(scope, maxCycles, 3);
-            TestBasicScope(scope, maxCycles, 2);
-            TestBasicScope(scope, maxCycles, 1);
-            TestBasicScope(scope, maxCycles, 0);
+            //TestBasicScope(scope, maxCycles, 3);
+            //TestBasicScope(scope, maxCycles, 2);
+            //TestBasicScope(scope, maxCycles, 1);
+            //TestBasicScope(scope, maxCycles, 0);
 
-            TestBasicScope(scope, maxCycles, 3);
-            TestBasicScope(scope, maxCycles, 2);
-            TestBasicScope(scope, maxCycles, 1);
-            TestBasicScope(scope, maxCycles, 0);
+            //TestBasicScope(scope, maxCycles, 3);
+            //TestBasicScope(scope, maxCycles, 2);
+            //TestBasicScope(scope, maxCycles, 1);
+            //TestBasicScope(scope, maxCycles, 0);
 
             TestDebugScope(scope, maxCycles);
             TestDebugScope(scope, maxCycles);
