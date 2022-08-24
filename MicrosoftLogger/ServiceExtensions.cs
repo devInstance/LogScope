@@ -24,6 +24,21 @@ namespace DevInstance.LogScope.Extensions.MicrosoftLogger
         /// <returns></returns>
         public static IServiceCollection AddMicrosoftScopeLogging(this IServiceCollection col, LogLevel level, string categoryName)
         {
+            return col.AddMicrosoftScopeLogging(level, categoryName, null);
+        }
+
+        /// <summary>
+        /// Creates and adds a microsoft logger and scope manager to the service collection.
+        /// </summary>
+        /// <param name="col">collection of services</param>
+        /// <param name="level">logging level. See <see cref="LogLevel"/></param>
+        /// <param name="categoryName">The category name for messages produced by the logger.</param>
+        /// <param name="o">
+        ///     Options for the default formatter. See <see cref="DefaultFormattersOptions"/>
+        /// </param>
+        /// <returns></returns>
+        public static IServiceCollection AddMicrosoftScopeLogging(this IServiceCollection col, LogLevel level, string categoryName, DefaultFormattersOptions o)
+        {
             var factory = LoggerFactory.Create(logging =>
             {
                 logging.Configure(options =>
@@ -40,7 +55,7 @@ namespace DevInstance.LogScope.Extensions.MicrosoftLogger
                 ).SetMinimumLevel(MicrosoftLogProvider.ConvertLevel(level));
             });
 
-            return col.AddMicrosoftScopeLogging(factory.CreateLogger(categoryName), level, null);
+            return col.AddMicrosoftScopeLogging(factory.CreateLogger(categoryName), level, o);
         }
 
         /// <summary>
