@@ -6,7 +6,8 @@
 trigger:
 - main
 
-pool: default
+pool: 
+  name: 'Default'
 
 variables:
   solution: 'LogScope.NET.sln'
