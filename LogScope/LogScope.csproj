@@ -31,6 +31,8 @@
 		Release notes for 1.4.1:
 		- Added ability to track scope instance using 'Scope.Id";
 	</PackageReleaseNotes>
+    <Title>Log Scope</Title>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
 
     <ItemGroup>
@@ -41,6 +43,10 @@
     <None Include="..\LICENSE">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
 

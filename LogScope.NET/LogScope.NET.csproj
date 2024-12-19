@@ -6,7 +6,7 @@
 		<Nullable>enable</Nullable>
 		<RootNamespace>DevInstance.LogScope</RootNamespace>
 		<AssemblyName>DevInstance.LogScope.NET</AssemblyName>
-		<Version>8.0.0</Version>
+		<Version>8.0.1</Version>
 		<Authors>Yuriy Frankiv</Authors>
 		<Company>devInstance LLC</Company>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -21,11 +21,11 @@
 		<PackageTags>logging, profiling, tracing</PackageTags>
 		<SignAssembly>false</SignAssembly>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
-		<AssemblyVersion>8.0.0.0</AssemblyVersion>
-		<FileVersion>8.0.0.0</FileVersion>
+		<AssemblyVersion>8.0.1.0</AssemblyVersion>
+		<FileVersion>8.0.1.0</FileVersion>
 		<PackageIcon>icon.png</PackageIcon>
 		<RepositoryUrl>https://github.com/devInstance/LogScope</RepositoryUrl>
-		<PackageReleaseNotes>Release notes for 8.0.0:
+		<PackageReleaseNotes>Release notes for 8.0.1:
 - Migration to .NET8;
 		</PackageReleaseNotes>
 		<Title>Log Scope NET</Title>
@@ -36,7 +36,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
