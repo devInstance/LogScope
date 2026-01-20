@@ -141,5 +141,5 @@ LogScope supports the following log levels:
 
 ## Documentation
 
-See more information about the API: http://logscope.devinstance.net/
+See more information about the API: https://devinstance.net/engineering/logscope
 
