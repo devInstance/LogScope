@@ -1,8 +1,7 @@
-﻿using DevInstance.LogScope.Extensions.MicrosoftLogger;
+﻿using DevInstance.LogScope;
+using DevInstance.LogScope.Extensions.MicrosoftLogger;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
 
 namespace MicrosoftLoggerSampleApp
 {
@@ -25,10 +24,9 @@ namespace MicrosoftLoggerSampleApp
                 .ConfigureServices((_, services) =>
                     {
                         services.AddHostedService<SampleLoggingHostedService>();
-                        services.AddMicrosoftScopeLogging();
+                        services.AddMicrosoftScopeLogging(LogLevel.TRACE, "test");
                     }
-                )
-                .ConfigureLogging(logging => logging.SetMinimumLevel(LogLevel.Trace));
+                );
         }
     }
 }
