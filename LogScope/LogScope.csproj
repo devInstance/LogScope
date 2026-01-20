@@ -1,10 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <RootNamespace>DevInstance.LogScope</RootNamespace>
     <AssemblyName>DevInstance.LogScope</AssemblyName>
-    <Version>1.4.3</Version>
+    <Version>1.4.2</Version>
     <Authors>Yuriy Frankiv</Authors>
     <Company>DevInstance LLC</Company>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -14,26 +14,26 @@
         Quick introduction: https://devinstance.net/blog/introducing-logscope
         Documentation: http://logscope.devinstance.net
     </Description>
-    <Copyright>(c) 2022 - 2024 devInstance LLC</Copyright>
+    <Copyright>(c) 2022 DevInstance LLC</Copyright>
     <PackageProjectUrl>http://logscope.devinstance.net</PackageProjectUrl>
     <PackageTags>logging, profiling, tracing</PackageTags>
     <SignAssembly>false</SignAssembly>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <AssemblyVersion>1.4.3.0</AssemblyVersion>
-    <FileVersion>1.4.3.0</FileVersion>
+    <AssemblyVersion>1.4.2.0</AssemblyVersion>
+    <FileVersion>1.4.2.0</FileVersion>
     <PackageIcon>icon.png</PackageIcon>
     <RepositoryUrl>https://github.com/devInstance/LogScope</RepositoryUrl>
     <PackageReleaseNotes>
-		Release notes for 1.4.3:
-		- Minor adjustments and updates;
 		Release notes for 1.4.2:
 		- Some performance improvements of the scope logging;
 		Release notes for 1.4.1:
 		- Added ability to track scope instance using 'Scope.Id";
 	</PackageReleaseNotes>
-    <Title>Log Scope</Title>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <DocumentationFile>C:\Projects\blog-projects\LogScope\LogScope\DevInstance.LogScope.xml</DocumentationFile>
+    </PropertyGroup>
+
 
     <ItemGroup>
     <None Include="..\icon.png">
@@ -44,15 +44,6 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
-    <None Include="..\README.md">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
   </ItemGroup>
-
-
-    <ItemGroup>
-      <PackageReference Include="Microsoft.NETCore.Platforms" Version="7.0.4" />
-    </ItemGroup>
 
 </Project>
