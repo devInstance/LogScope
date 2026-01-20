@@ -12,18 +12,19 @@
     <Description>
         LogScope implements simple logging framework for tracing, profiling and logging methods and critical parts of the code. LogScope is not yet another logger. It is an extension of existing logging libraries that provides alternative way of logging and measuring a performance of critical parts of code. It also helps building a cleaner picture of executing asynchronous calls. The whole idea is based on a “scope”. Scope can be method or a specific part of it. The implementation is based on IDisposable where calling Dispose ends the scope.
         Quick introduction: https://devinstance.net/blog/introducing-logscope
-        Documentation: http://logscope.devinstance.net
+        Documentation: https://devinstance.net/engineering/logscope
     </Description>
-    <Copyright>(c) 2022 - 2025 DevInstance LLC</Copyright>
-    <PackageProjectUrl>http://logscope.devinstance.net</PackageProjectUrl>
+    <Copyright>(c) 2022 - 2026 DevInstance LLC</Copyright>
+    <PackageProjectUrl>https://devinstance.net/engineering/logscope</PackageProjectUrl>
     <PackageTags>logging, profiling, tracing</PackageTags>
     <SignAssembly>false</SignAssembly>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <AssemblyVersion>1.4.2.0</AssemblyVersion>
-    <FileVersion>1.4.2.0</FileVersion>
+    <AssemblyVersion>10.0.0.0</AssemblyVersion>
+    <FileVersion>10.0.0.0</FileVersion>
     <PackageIcon>icon.png</PackageIcon>
     <RepositoryUrl>https://github.com/devInstance/LogScope</RepositoryUrl>
-    <PackageReleaseNotes>
+	<PackageReadmeFile>README.md</PackageReadmeFile>
+	<PackageReleaseNotes>
 		Release notes for 10.0.0:
 		- Migrated to .NET10;
 		Release notes for 1.4.2:
@@ -38,14 +39,18 @@
 
 
     <ItemGroup>
-    <None Include="..\icon.png">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-    <None Include="..\LICENSE">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-  </ItemGroup>
+        <None Include="..\icon.png">
+          <Pack>True</Pack>
+          <PackagePath></PackagePath>
+        </None>
+        <None Include="..\LICENSE">
+          <Pack>True</Pack>
+          <PackagePath></PackagePath>
+        </None>
+	    <None Include="..\README.md">
+		    <Pack>True</Pack>
+		    <PackagePath></PackagePath>
+	    </None>
+    </ItemGroup>
 
 </Project>
