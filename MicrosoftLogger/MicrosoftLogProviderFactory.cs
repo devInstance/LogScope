@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace DevInstance.LogScope.Extensions.MicrosoftLogger
 {
+    /// <summary>
+    /// Factory class for creating scope managers that integrate with Microsoft.Extensions.Logging.
+    /// </summary>
     public static class MicrosoftLogProviderFactory
     {
         /// <summary>
