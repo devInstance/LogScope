@@ -34,11 +34,11 @@ Read more: http://devinstance.net/blog/dotnet-standard-logging-and-profiling
 
   <ItemGroup>
     <PackageReference Include="DevInstance.LogScope" Version="10.0.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.2" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.2" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.2" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="10.0.2" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="10.0.2" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="10.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="10.0.3" />
   </ItemGroup>
 
   <ItemGroup>
