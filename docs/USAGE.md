@@ -36,6 +36,9 @@ dotnet add package DevInstance.LogScope.NET
 
 # Microsoft.Extensions.Logging integration
 dotnet add package DevInstance.LogScope.Extensions.MicrosoftLogger
+
+# Serilog integration
+dotnet add package DevInstance.LogScope.Extensions.SerilogLogger
 ```
 
 ### Quick Start
