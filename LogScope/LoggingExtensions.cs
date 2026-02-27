@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
+using DevInstance.LogScope.Templates;
 
 namespace DevInstance.LogScope
 {
@@ -145,6 +146,76 @@ namespace DevInstance.LogScope
             {
                 log.Line(LogLevel.ERROR, $"Exception!!!: {message}");
                 log.Line(LogLevel.ERROR, ex.StackTrace);
+            }
+        }
+
+        /// <summary>
+        /// Writes a TRACE level message using a message template with structured arguments.
+        /// </summary>
+        /// <param name="log">The scope log instance.</param>
+        /// <param name="messageTemplate">The message template with placeholders (e.g., "Processed {Count} items").</param>
+        /// <param name="args">The arguments to fill template placeholders.</param>
+        public static void T(this IScopeLog log, string messageTemplate, params object[] args)
+        {
+            if (log != null)
+            {
+                log.Line(LogLevel.TRACE, MessageTemplate.Render(messageTemplate, args));
+            }
+        }
+
+        /// <summary>
+        /// Writes a DEBUG level message using a message template with structured arguments.
+        /// </summary>
+        /// <param name="log">The scope log instance.</param>
+        /// <param name="messageTemplate">The message template with placeholders.</param>
+        /// <param name="args">The arguments to fill template placeholders.</param>
+        public static void D(this IScopeLog log, string messageTemplate, params object[] args)
+        {
+            if (log != null)
+            {
+                log.Line(LogLevel.DEBUG, MessageTemplate.Render(messageTemplate, args));
+            }
+        }
+
+        /// <summary>
+        /// Writes an INFO level message using a message template with structured arguments.
+        /// </summary>
+        /// <param name="log">The scope log instance.</param>
+        /// <param name="messageTemplate">The message template with placeholders.</param>
+        /// <param name="args">The arguments to fill template placeholders.</param>
+        public static void I(this IScopeLog log, string messageTemplate, params object[] args)
+        {
+            if (log != null)
+            {
+                log.Line(LogLevel.INFO, MessageTemplate.Render(messageTemplate, args));
+            }
+        }
+
+        /// <summary>
+        /// Writes a WARNING level message using a message template with structured arguments.
+        /// </summary>
+        /// <param name="log">The scope log instance.</param>
+        /// <param name="messageTemplate">The message template with placeholders.</param>
+        /// <param name="args">The arguments to fill template placeholders.</param>
+        public static void W(this IScopeLog log, string messageTemplate, params object[] args)
+        {
+            if (log != null)
+            {
+                log.Line(LogLevel.WARNING, MessageTemplate.Render(messageTemplate, args));
+            }
+        }
+
+        /// <summary>
+        /// Writes an ERROR level message using a message template with structured arguments.
+        /// </summary>
+        /// <param name="log">The scope log instance.</param>
+        /// <param name="messageTemplate">The message template with placeholders.</param>
+        /// <param name="args">The arguments to fill template placeholders.</param>
+        public static void E(this IScopeLog log, string messageTemplate, params object[] args)
+        {
+            if (log != null)
+            {
+                log.Line(LogLevel.ERROR, $"Error!!!: {MessageTemplate.Render(messageTemplate, args)}");
             }
         }
 
