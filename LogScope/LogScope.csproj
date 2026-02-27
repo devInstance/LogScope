@@ -4,7 +4,7 @@
     <TargetFramework>net10.0</TargetFramework>
     <RootNamespace>DevInstance.LogScope</RootNamespace>
     <AssemblyName>DevInstance.LogScope</AssemblyName>
-    <Version>10.0.0</Version>
+    <Version>10.1.0</Version>
     <Authors>Yuriy Frankiv</Authors>
     <Company>DevInstance LLC</Company>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -25,6 +25,8 @@
     <RepositoryUrl>https://github.com/devInstance/LogScope</RepositoryUrl>
 	<PackageReadmeFile>README.md</PackageReadmeFile>
 	<PackageReleaseNotes>
+		Release notes for 10.1.0:
+		- Message Templates: now LogScope supports Serilog-style structured message templates
 		Release notes for 10.0.0:
 		- Migrated to .NET10;
 		Release notes for 1.4.2:

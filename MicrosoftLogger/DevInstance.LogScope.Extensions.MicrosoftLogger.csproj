@@ -2,38 +2,34 @@
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
-    <Description>Microsoft logging extension integration with the LogScope.
-Read more: http://devinstance.net/blog/dotnet-standard-logging-and-profiling
-</Description>
+    <Description>
+		Microsoft logging extension integration with the LogScope.
+		Read more: https://devinstance.net/engineering/logscope
+	</Description>
     <Copyright>(c) 2022-2026 DevInstance LLC</Copyright>
-    <PackageProjectUrl>http://logscope.devinstance.net</PackageProjectUrl>
+    <PackageProjectUrl>https://devinstance.net/engineering/logscope</PackageProjectUrl>
     <PackageTags>logging, profiling, tracing</PackageTags>
     <PackageIcon>icon.png</PackageIcon>
     <PackageReleaseNotes>
+		Release notes for 10.1.0:
+		- Message Templates: now LogScope supports Serilog-style structured message templates
 		Release notes for 10.0.0:
 		- .NET10 Migration
 		Release notes for 8.0.0:
 		- .NET8 Migration and minor updates
-		Release notes for 1.0.1:
-		- Additional extension method for the formating options
-		Release notes for 1.0.0:
-		- Support of LogScope 1.4.2
-		- Performance optimizations
-		- First official release
 	</PackageReleaseNotes>
-    <Version>10.0.0</Version>
+    <Version>10.1.0</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <AssemblyVersion>10.0.0.0</AssemblyVersion>
-    <FileVersion>10.0.0.0</FileVersion>
-    <Title>MicrosoftLogger for LogScope</Title>
+    <AssemblyVersion>10.1.0.0</AssemblyVersion>
+    <FileVersion>10.1.0.0</FileVersion>
+    <Title>Microsoft Logger for LogScope</Title>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/devInstance/LogScope</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DevInstance.LogScope" Version="10.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.3" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.3" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.3" />
@@ -54,6 +50,10 @@ Read more: http://devinstance.net/blog/dotnet-standard-logging-and-profiling
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LogScope\LogScope.csproj" />
   </ItemGroup>
 
 </Project>
