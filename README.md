@@ -161,6 +161,50 @@ var manager = SerilogLogProviderFactory.CreateManager(
     new DefaultFormattersOptions { ShowTimestamp = true });
 ```
 
+## Message Templates
+
+LogScope supports Serilog-style structured message templates. Placeholders in the template string are replaced with argument values in order:
+
+```csharp
+log.I("Processed {Count} items in {Elapsed} ms", count, elapsed);
+// Output: Processed 5 items in 120 ms
+```
+
+### Format Specifiers
+
+Apply .NET format strings using the `{Name:format}` syntax:
+
+```csharp
+log.I("Elapsed: {Elapsed:000} ms", 34);
+// Output: Elapsed: 034 ms
+
+log.I("Date: {Date:yyyy-MM-dd}", DateTime.Now);
+// Output: Date: 2026-02-26
+```
+
+### Destructuring
+
+Use the `@` operator to destructure objects into their properties or enumerate collections:
+
+```csharp
+log.I("Position: {@Pos}", new { Latitude = 25, Longitude = 134 });
+// Output: Position: { Latitude: 25, Longitude: 134 }
+
+log.I("Items: {@Items}", new List<int> { 1, 2, 3 });
+// Output: Items: [1, 2, 3]
+```
+
+### Escaped Braces
+
+Use `{{` and `}}` to output literal braces:
+
+```csharp
+log.I("Value is {{not a placeholder}}");
+// Output: Value is {not a placeholder}
+```
+
+Template overloads are available for all log levels: `T()`, `D()`, `I()`, `W()`, and `E()`.
+
 ## Log Levels
 
 LogScope supports the following log levels:
