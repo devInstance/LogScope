@@ -65,6 +65,49 @@ var manager = DefaultScopeLogFactory.CreateConsoleLogger(LogLevel.DEBUG);
 var log = manager.CreateLogger(this);
 ```
 
+**With Microsoft.Extensions.Logging:**
+
+```csharp
+using DevInstance.LogScope.Extensions.MicrosoftLogger;
+
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddMicrosoftScopeLogging(LogLevel.DEBUG, "MyApp");
+}
+```
+
+**With Serilog:**
+
+```csharp
+using DevInstance.LogScope.Extensions.SerilogLogger;
+
+// Using the global Log.Logger
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddSerilogScopeLogging(LogLevel.DEBUG);
+}
+```
+
+Or with a custom Serilog logger instance:
+
+```csharp
+var serilogLogger = new LoggerConfiguration()
+    .MinimumLevel.Verbose()
+    .WriteTo.Console()
+    .CreateLogger();
+
+services.AddSerilogScopeLogging(serilogLogger, LogLevel.DEBUG);
+```
+
+For console applications without DI, use the factory directly:
+
+```csharp
+var manager = SerilogLogProviderFactory.CreateManager(
+    LogLevel.DEBUG,
+    Log.Logger,
+    new DefaultFormattersOptions { ShowTimestamp = true });
+```
+
 ---
 
 ## Core Concepts
