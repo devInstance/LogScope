@@ -19,8 +19,8 @@
     <PackageTags>logging, profiling, tracing</PackageTags>
     <SignAssembly>false</SignAssembly>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <AssemblyVersion>10.0.0.0</AssemblyVersion>
-    <FileVersion>10.0.0.0</FileVersion>
+    <AssemblyVersion>10.1.0.0</AssemblyVersion>
+    <FileVersion>10.1.0.0</FileVersion>
     <PackageIcon>icon.png</PackageIcon>
     <RepositoryUrl>https://github.com/devInstance/LogScope</RepositoryUrl>
 	<PackageReadmeFile>README.md</PackageReadmeFile>
@@ -38,7 +38,6 @@
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
         <DocumentationFile>C:\Projects\blog-projects\LogScope\LogScope\DevInstance.LogScope.xml</DocumentationFile>
     </PropertyGroup>
-
 
     <ItemGroup>
         <None Include="..\icon.png">
