@@ -4,7 +4,7 @@
     <TargetFramework>net10.0</TargetFramework>
     <RootNamespace>DevInstance.LogScope</RootNamespace>
     <AssemblyName>DevInstance.LogScope</AssemblyName>
-    <Version>10.1.0</Version>
+    <Version>10.1.1</Version>
     <Authors>Yuriy Frankiv</Authors>
     <Company>DevInstance LLC</Company>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -19,12 +19,15 @@
     <PackageTags>logging, profiling, tracing</PackageTags>
     <SignAssembly>false</SignAssembly>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <AssemblyVersion>10.1.0.0</AssemblyVersion>
-    <FileVersion>10.1.0.0</FileVersion>
+    <AssemblyVersion>10.1.1.0</AssemblyVersion>
+    <FileVersion>10.1.1.0</FileVersion>
     <PackageIcon>icon.png</PackageIcon>
     <RepositoryUrl>https://github.com/devInstance/LogScope</RepositoryUrl>
 	<PackageReadmeFile>README.md</PackageReadmeFile>
 	<PackageReleaseNotes>
+		Release notes for 10.1.1:
+		- Fixed: Line(level, message) wrote at the scope's level instead of the line's, so E/W/I lines reached the provider as TRACE;
+		- Fixed: E(exception) logs exception.ToString(), so inner exceptions are no longer dropped;
 		Release notes for 10.1.0:
 		- Message Templates: now LogScope supports Serilog-style structured message templates
 		Release notes for 10.0.0:

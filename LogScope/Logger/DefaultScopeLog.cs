@@ -107,7 +107,7 @@ namespace DevInstance.LogScope.Logger
         {
             if (l <= BaseLevel)
             {
-                Provider.WriteLine(ScopeLevel, Formatter.FormatLine(this, message));
+                Provider.WriteLine(l, Formatter.FormatLine(this, message));
             }
         }
 

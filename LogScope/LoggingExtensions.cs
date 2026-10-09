@@ -121,7 +121,8 @@ namespace DevInstance.LogScope
         }
 
         /// <summary>
-        /// Writes an ERROR level message with exception details including stack trace.
+        /// Writes an ERROR level message with exception details: type, message, stack trace and
+        /// every inner exception.
         /// </summary>
         /// <param name="log">The scope log instance.</param>
         /// <param name="ex">The exception to log.</param>
@@ -130,12 +131,13 @@ namespace DevInstance.LogScope
             if (log != null)
             {
                 log.Line(LogLevel.ERROR, $"Exception!!!: {ex.Message}");
-                log.Line(LogLevel.ERROR, ex.StackTrace);
+                log.Line(LogLevel.ERROR, ex.ToString());
             }
         }
 
         /// <summary>
-        /// Writes an ERROR level message with a custom message and exception stack trace.
+        /// Writes an ERROR level message with a custom message and the exception's details, inner
+        /// exceptions included.
         /// </summary>
         /// <param name="log">The scope log instance.</param>
         /// <param name="message">The custom error message.</param>
@@ -145,7 +147,7 @@ namespace DevInstance.LogScope
             if (log != null)
             {
                 log.Line(LogLevel.ERROR, $"Exception!!!: {message}");
-                log.Line(LogLevel.ERROR, ex.StackTrace);
+                log.Line(LogLevel.ERROR, ex.ToString());
             }
         }
 

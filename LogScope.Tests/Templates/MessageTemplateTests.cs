@@ -262,6 +262,16 @@ namespace DevInstance.LogScope.Templates.Tests
             mock.Verify(x => x.Line(LogLevel.ERROR, It.Is<string>(s => s != null && s.Contains("Custom message"))), Times.Once());
         }
 
+        [Fact]
+        public void ExtensionMethod_E_WithException_IncludesInnerException()
+        {
+            var mock = new Mock<IScopeLog>();
+            var ex = new InvalidOperationException("outer", new ArgumentException("inner cause"));
+            mock.Object.E(ex);
+            LoggingExtensions.E(mock.Object, "Custom message", ex);
+            mock.Verify(x => x.Line(LogLevel.ERROR, It.Is<string>(s => s != null && s.Contains("inner cause"))), Times.Exactly(2));
+        }
+
         #endregion
     }
 }

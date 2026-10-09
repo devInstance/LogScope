@@ -38,6 +38,27 @@ namespace DevInstance.LogScope.Logger.Tests
             Assert.Equal(scopeLevel, scopeLog.ScopeLevel);
         }
 
+        [Fact]
+        public void Line_WritesAtTheLineLevel_NotTheScopeLevel()
+        {
+            var manager = new Mock<IScopeManager>();
+            manager.Setup(x => x.BaseLevel).Returns(LogLevel.TRACE);
+            var provider = new Mock<ILogProvider>();
+            var formater = new Mock<IScopeFormatter>();
+            formater.Setup(x => x.FormatLine(It.IsAny<IScopeLog>(), It.IsAny<string>())).Returns<IScopeLog, string>((_, m) => m);
+            var context = new LContext()
+            {
+                Formatter = formater.Object,
+                Manager = manager.Object,
+                Provider = provider.Object,
+            };
+
+            var scopeLog = new DefaultScopeLog(context, LogLevel.TRACE, LogLevel.TRACE, null, "scope", false);
+            scopeLog.Line(LogLevel.ERROR, "boom");
+
+            provider.Verify(x => x.WriteLine(LogLevel.ERROR, "boom"), Times.Once());
+        }
+
         //[Fact()]
         //public void ConstructorArgumentNullExceptionTest()
         //{
